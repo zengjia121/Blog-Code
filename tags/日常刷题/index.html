@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 日常刷题 | 小曾小卖部</title>
+  <title>Tag: 日常刷题 | 烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="小曾小卖部">
+<meta property="og:title" content="烧鸭工坊">
 <meta property="og:url" content="http://example.com/tags/%E6%97%A5%E5%B8%B8%E5%88%B7%E9%A2%98/index.html">
-<meta property="og:site_name" content="小曾小卖部">
+<meta property="og:site_name" content="烧鸭工坊">
 <meta property="og:locale">
-<meta property="article:author" content="Zengjia">
+<meta property="article:author" content="RoastDuck">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="小曾小卖部" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -34,19 +34,22 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+<!-- 引入 Bootstrap 的 CSS 文件 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<div style="width: 128px;height:128px"></div>
+		<!-- <a href="/" class="profilepic">
 			<img src="/assets/img/avatar.jpg" class="js-avatar">
-		</a>
+		</a> -->
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ZengJia</a></h1>
+		  <h1 class="header-author"><a href="/">RoastDuck</a></h1>
 		</hgroup>
 		
 
@@ -54,6 +57,8 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives/">所有文章</a></li>
 	        
 				<li><a href="/tags/">标签</a></li>
 	        
@@ -79,24 +84,37 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
+					
+						<a class="github" target="_blank" href="https://github.com/zengjia121" title="github"><i class="icon-github"></i></a>
+					
+				
+					
+						<a class="mail" target="_blank" href="mailto:635600841@qq.com" title="mail"><i class="icon-mail"></i></a>
+					
+				
+					
+						<a class="qq" href="#" data-toggle="tooltip" data-placement="bottom" title="qq: 635600841"><i class="icon-qq"></i></a>
+					
+				
+					
+						<a class="weixin" href="#" data-toggle="tooltip" data-placement="bottom" title="weixin: zengjia121"><i class="icon-weixin"></i></a>
+					
+				
 			</div>
 		</nav>
 	</header>		
 </div>
-
+<style>
+	.overlay {
+  background: url('/assets/img/background.jpg') no-repeat  center 12%;
+  background-size: cover;
+}
+</style>
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: /assets/img/background.jpg"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -106,10 +124,12 @@
 				<img src="/assets/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ZengJia</h1>
+			  <h1 class="header-author js-header-author">RoastDuck</h1>
 			</hgroup>
 			
 			
+			
+				
 			
 				
 			
@@ -122,13 +142,13 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/zengjia121" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="mail" target="_blank" href="mailto:635600841@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="qq" target="_blank" href="/635600841" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="weixin" target="_blank" href="/zengjia121" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -137,11 +157,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/">标签</a></li>
+					<li style="width: 25%"><a href="/archives/">所有文章</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/">分类</a></li>
+					<li style="width: 25%"><a href="/tags/">标签</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -173,14 +195,14 @@
   <div class="archive-article-inner">
     <header class="archive-article-header">
       	<div class="article-meta">
-	      	<a href="/2024/03/14/leetcode-20240314/" class="archive-article-date">
+	      	<a href="/2024/03/14/LeetcCode/leetcode-20240314/" class="archive-article-date">
   	<time datetime="2024-03-14T07:17:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-14</time>
 </a>
         </div>
     	 
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/14/leetcode-20240314/">2024.3.14 日常刷题</a>
+      <a class="archive-article-title" href="/2024/03/14/LeetcCode/leetcode-20240314/">2024.3.14 日常刷题</a>
     </h1>
   
 
@@ -234,14 +256,14 @@
   <div class="archive-article-inner">
     <header class="archive-article-header">
       	<div class="article-meta">
-	      	<a href="/2024/03/13/leetcode-20240313/" class="archive-article-date">
+	      	<a href="/2024/03/13/LeetcCode/leetcode-20240313/" class="archive-article-date">
   	<time datetime="2024-03-13T11:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-13</time>
 </a>
         </div>
     	 
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/13/leetcode-20240313/">2024.3.13 日常刷题</a>
+      <a class="archive-article-title" href="/2024/03/13/LeetcCode/leetcode-20240313/">2024.3.13 日常刷题</a>
     </h1>
   
 
@@ -295,7 +317,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 Zengjia
+    		&copy; 2024 RoastDuck
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -378,6 +400,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
               </li>
              
@@ -442,27 +472,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://github.com/zengjia121" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>GitHub</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="https://paperswithcode.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Paper With Code</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://steamcommunity.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Steam</a>
             </li>
           
         </ul>
@@ -547,5 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
+  <!-- 引入 jQuery 和 Bootstrap 的 JavaScript 文件 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- 初始化 tooltip 组件 -->
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
 </body>
 </html>

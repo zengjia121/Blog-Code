@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>小曾小卖部</title>
+  <title>烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="小曾小卖部">
+<meta property="og:title" content="烧鸭工坊">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="小曾小卖部">
+<meta property="og:site_name" content="烧鸭工坊">
 <meta property="og:locale">
-<meta property="article:author" content="Zengjia">
+<meta property="article:author" content="RoastDuck">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="小曾小卖部" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -34,19 +34,22 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+<!-- 引入 Bootstrap 的 CSS 文件 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<div style="width: 128px;height:128px"></div>
+		<!-- <a href="/" class="profilepic">
 			<img src="/assets/img/avatar.jpg" class="js-avatar">
-		</a>
+		</a> -->
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ZengJia</a></h1>
+		  <h1 class="header-author"><a href="/">RoastDuck</a></h1>
 		</hgroup>
 		
 
@@ -54,6 +57,8 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives/">所有文章</a></li>
 	        
 				<li><a href="/tags/">标签</a></li>
 	        
@@ -79,24 +84,37 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
+					
+						<a class="github" target="_blank" href="https://github.com/zengjia121" title="github"><i class="icon-github"></i></a>
+					
+				
+					
+						<a class="mail" target="_blank" href="mailto:635600841@qq.com" title="mail"><i class="icon-mail"></i></a>
+					
+				
+					
+						<a class="qq" href="#" data-toggle="tooltip" data-placement="bottom" title="qq: 635600841"><i class="icon-qq"></i></a>
+					
+				
+					
+						<a class="weixin" href="#" data-toggle="tooltip" data-placement="bottom" title="weixin: zengjia121"><i class="icon-weixin"></i></a>
+					
+				
 			</div>
 		</nav>
 	</header>		
 </div>
-
+<style>
+	.overlay {
+  background: url('/assets/img/background.jpg') no-repeat  center 12%;
+  background-size: cover;
+}
+</style>
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: /assets/img/background.jpg"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -106,10 +124,12 @@
 				<img src="/assets/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ZengJia</h1>
+			  <h1 class="header-author js-header-author">RoastDuck</h1>
 			</hgroup>
 			
 			
+			
+				
 			
 				
 			
@@ -122,13 +142,13 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/zengjia121" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="mail" target="_blank" href="mailto:635600841@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="qq" target="_blank" href="/635600841" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="weixin" target="_blank" href="/zengjia121" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -137,11 +157,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/">标签</a></li>
+					<li style="width: 25%"><a href="/archives/">所有文章</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/">分类</a></li>
+					<li style="width: 25%"><a href="/tags/">标签</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -158,19 +180,120 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-leetcode-20240314" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-博客搭建-20240314" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2024/03/14/leetcode-20240314/">2024.3.14 日常刷题</a>
+      <a class="article-title" href="/2024/03/14/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-20240314/">yillia实现QQ 微信弹出信息 而不是跳转页面</a>
     </h1>
   
 
         
-        <a href="/2024/03/14/leetcode-20240314/" class="archive-article-date">
+        <a href="/2024/03/14/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-20240314/" class="archive-article-date">
+  	<time datetime="2024-03-14T13:48:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原本的 yillia 下方的 subNav 是默认直接跳转，<br><img src="/images/blog-2024-03-14-21-54-26.png" alt="原本默认跳转页面"><br>这导致我的 wx 和 qq 点击后会跳转到一个非常丑的页面（这样显得我很不专业）<br>所以希望实现功能: <strong>wx 和 qq 的按钮悬浮显示设置中的内容</strong><br>具体步骤如下：</p>
+<ol>
+<li>首先在 layout&#x2F;layout.ejs 中导入所需的组件,并进行初始化<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;!-- 引入 jQuery 和 <span class="title class_">Bootstrap</span> 的 <span class="title class_">JavaScript</span> 文件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;!-- 初始化 tooltip 组件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   $(<span class="string">&#x27;[data-toggle=&quot;tooltip&quot;]&#x27;</span>).<span class="title function_">tooltip</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>定位到 subnav 的具体位置,在 layout&#x2F;_parital&#x2F;left-col.esj 中第 30 行左右</li>
+<li>修改 div social 中的对应代码，将 qq 和 wx 的部分修改,在相应的元素上添加 data-toggle&#x3D;”popover” 属性，代码如下</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> theme.<span class="property">subnav</span>)&#123; %&gt;</span><br><span class="line">	&lt;% <span class="keyword">if</span> (i === <span class="string">&#x27;qq&#x27;</span> || i === <span class="string">&#x27;weixin&#x27;</span>) &#123; %&gt;</span><br><span class="line">		<span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">data-toggle</span>=<span class="string">&quot;tooltip&quot;</span> <span class="attr">data-placement</span>=<span class="string">&quot;bottom&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&lt;%= i %&gt;: &lt;%= theme.subnav[i] %&gt;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;icon-&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">	&lt;% &#125; <span class="keyword">else</span> &#123; %&gt;</span><br><span class="line">		<span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(theme.subnav[i]) %&gt;&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;icon-&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">	&lt;% &#125; %&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以悬浮显示 qq 和 wx 了<br><img src="/images/blog-2024-03-14-22-02-36.png" alt="悬浮显示微信"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/组件使用//" class="article-tag-list-link color5">组件使用</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Hexo//" class="article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LeetcCode/leetcode-20240314" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/03/14/LeetcCode/leetcode-20240314/">2024.3.14 日常刷题</a>
+    </h1>
+  
+
+        
+        <a href="/2024/03/14/LeetcCode/leetcode-20240314/" class="archive-article-date">
   	<time datetime="2024-03-14T07:17:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-14</time>
 </a>
         
@@ -181,7 +304,7 @@
         <h1 id="最长有效括号-搜索旋转排序数组"><a href="#最长有效括号-搜索旋转排序数组" class="headerlink" title="最长有效括号&amp;&amp;搜索旋转排序数组"></a>最长有效括号&amp;&amp;搜索旋转排序数组</h1><h2 id="32-最长有效括号"><a href="#32-最长有效括号" class="headerlink" title="[32] 最长有效括号"></a>[32] 最长有效括号</h2><pre><code>栈解法、贪心解法
 </code></pre>
         
-          <a class="article-more-a" href="/2024/03/14/leetcode-20240314/#more">more >></a>
+          <a class="article-more-a" href="/2024/03/14/LeetcCode/leetcode-20240314/#more">more >></a>
         
       
 
@@ -254,19 +377,19 @@
 
 
   
-    <article id="post-leetcode-20240313" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-LeetcCode/leetcode-20240313" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2024/03/13/leetcode-20240313/">2024.3.13 日常刷题</a>
+      <a class="article-title" href="/2024/03/13/LeetcCode/leetcode-20240313/">2024.3.13 日常刷题</a>
     </h1>
   
 
         
-        <a href="/2024/03/13/leetcode-20240313/" class="archive-article-date">
+        <a href="/2024/03/13/LeetcCode/leetcode-20240313/" class="archive-article-date">
   	<time datetime="2024-03-13T11:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-13</time>
 </a>
         
@@ -276,7 +399,7 @@
       
         <h2 id="22-下一个排列"><a href="#22-下一个排列" class="headerlink" title="[22]下一个排列"></a>[22]下一个排列</h2>
         
-          <a class="article-more-a" href="/2024/03/13/leetcode-20240313/#more">more >></a>
+          <a class="article-more-a" href="/2024/03/13/LeetcCode/leetcode-20240313/#more">more >></a>
         
       
 
@@ -438,7 +561,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 Zengjia
+    		&copy; 2024 RoastDuck
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -521,6 +644,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
               </li>
              
@@ -585,27 +716,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://github.com/zengjia121" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>GitHub</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="https://paperswithcode.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Paper With Code</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://steamcommunity.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Steam</a>
             </li>
           
         </ul>
@@ -690,5 +809,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
+  <!-- 引入 jQuery 和 Bootstrap 的 JavaScript 文件 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- 初始化 tooltip 组件 -->
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
 </body>
 </html>
