@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 犯蠢 | 小曾小卖部</title>
+  <title>2024.3.14 日常刷题 | 小曾小卖部</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小曾小卖部">
-<meta property="og:url" content="http://example.com/tags/%E7%8A%AF%E8%A0%A2/index.html">
+  <meta name="description" content="[32] 最长有效括号栈解法、贪心解法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024.3.14 日常刷题">
+<meta property="og:url" content="http://example.com/2024/03/14/leetcode-20240314/index.html">
 <meta property="og:site_name" content="小曾小卖部">
+<meta property="og:description" content="[32] 最长有效括号栈解法、贪心解法">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/blog-2024-03-14-15-19-26.png">
+<meta property="article:published_time" content="2024-03-14T07:17:56.000Z">
+<meta property="article:modified_time" content="2024-03-14T07:32:40.293Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="日常刷题">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/blog-2024-03-14-15-19-26.png">
   
     <link rel="alternative" href="/atom.xml" title="小曾小卖部" type="application/atom+xml">
   
@@ -150,68 +158,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-leetcode-20240314" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/03/12/FirstPost/" class="archive-article-date">
-  	<time datetime="2024-03-12T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/12/FirstPost/">关于paste image设置无效的相关bug</a>
+    <h1 class="article-title" itemprop="name">
+      2024.3.14 日常刷题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2024/03/14/leetcode-20240314/" class="archive-article-date">
+  	<time datetime="2024-03-14T07:17:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="32-最长有效括号"><a href="#32-最长有效括号" class="headerlink" title="[32] 最长有效括号"></a>[32] 最长有效括号</h2><pre><code>栈解法、贪心解法
+</code></pre>
+<span id="more"></span>
+
+<p><img src="/images/blog-2024-03-14-15-19-26.png" alt="最长有效括号题目"></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>一开始想着括号问题 一般直接上栈，但是没想出栈怎么做，做着做着写偏了<br>失败代码如下，提交的时候发现越往后要分类的情况太多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 失败方法，括号问题应该直接上栈</span></span><br><span class="line">max_nums = nums = left = right = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">    <span class="keyword">if</span> char == <span class="string">&quot;(&quot;</span>:</span><br><span class="line">        left += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> char == <span class="string">&quot;)&quot;</span>:</span><br><span class="line">        right += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> left == right:</span><br><span class="line">        nums += left + right</span><br><span class="line">        left = right = <span class="number">0</span></span><br><span class="line">        max_nums = <span class="built_in">max</span>(max_nums, nums)</span><br><span class="line">    <span class="keyword">elif</span> right &gt; left:</span><br><span class="line">        left = right = <span class="number">0</span></span><br><span class="line">        nums = <span class="number">0</span></span><br><span class="line"><span class="keyword">if</span> left &gt; right:</span><br><span class="line">    max_nums = <span class="built_in">max</span>(max_nums, right * <span class="number">2</span>)</span><br><span class="line">    <span class="comment"># max_nums += right * 2</span></span><br><span class="line"><span class="keyword">return</span> max_nums</span><br></pre></td></tr></table></figure>
+
+<p>所以直接换成用栈进行，代码如下（乐，每次 python 和 JavaScript 换着写脑子都会发昏</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 栈解法</span></span><br><span class="line">stack = [-<span class="number">1</span>]</span><br><span class="line">ret = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">    <span class="comment"># 左括号，无脑入栈</span></span><br><span class="line">    <span class="keyword">if</span> s[i] == <span class="string">&quot;(&quot;</span>:</span><br><span class="line">        stack.append(i)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 右括号，若栈为空，说明右括号多了，更新起始位置</span></span><br><span class="line">        stack.pop()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="comment"># 若栈为空，说明没有匹配的左括号，将当前位置压入栈中作为新的起始位置</span></span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 若栈不为空，说明有匹配的左括号，计算长度</span></span><br><span class="line">            ret = <span class="built_in">max</span>(ret, i - stack[-<span class="number">1</span>])</span><br><span class="line"><span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+<p>TypeScript 写法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> stack = [-<span class="number">1</span>];</span><br><span class="line"><span class="keyword">let</span> max = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (s[i] == <span class="string">&quot;(&quot;</span>) &#123;</span><br><span class="line">    stack.<span class="title function_">push</span>(i);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    stack.<span class="title function_">pop</span>();</span><br><span class="line">    <span class="keyword">if</span> (stack.<span class="property">length</span> != <span class="number">0</span>) &#123;</span><br><span class="line">      max = <span class="title class_">Math</span>.<span class="title function_">max</span>(max, i - stack[stack.<span class="property">length</span> - <span class="number">1</span>]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      stack.<span class="title function_">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>总而言之，以后遇到括号匹配的题目还是优先使用栈进行</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vscode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bug</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">犯蠢</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常刷题</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/03/14/leetcode-20240314/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2024/03/13/leetcode-20240313/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.3.13 日常刷题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -234,9 +338,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
