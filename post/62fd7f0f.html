@@ -6,24 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>yillia实现QQ 微信弹出信息 而不是跳转页面 | 烧鸭工坊</title>
+  <title>2024.3.13 日常刷题 | 烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原本的 yillia 下方的 subNav 是默认直接跳转，这导致我的 wx 和 qq 点击后会跳转到一个非常丑的页面（这样显得我很不专业）所以希望实现功能: wx 和 qq 的按钮悬浮显示设置中的内容">
+  <meta name="description" content="[22]下一个排列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yillia实现QQ 微信弹出信息 而不是跳转页面">
-<meta property="og:url" content="http://example.com/2024/03/14/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-20240314/index.html">
+<meta property="og:title" content="2024.3.13 日常刷题">
+<meta property="og:url" content="http://example.com/post/62fd7f0f.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="原本的 yillia 下方的 subNav 是默认直接跳转，这导致我的 wx 和 qq 点击后会跳转到一个非常丑的页面（这样显得我很不专业）所以希望实现功能: wx 和 qq 的按钮悬浮显示设置中的内容">
+<meta property="og:description" content="[22]下一个排列">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-14-21-54-26.png">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-14-22-02-36.png">
-<meta property="article:published_time" content="2024-03-14T13:48:26.000Z">
-<meta property="article:modified_time" content="2024-03-15T02:41:41.403Z">
+<meta property="og:image" content="http://example.com/images/blog-2024-03-13-19-34-09.png">
+<meta property="article:published_time" content="2024-03-13T11:27:46.000Z">
+<meta property="article:modified_time" content="2024-03-15T14:33:28.450Z">
 <meta property="article:author" content="RoastDuck">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="日常刷题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/blog-2024-03-14-21-54-26.png">
+<meta name="twitter:image" content="http://example.com/images/blog-2024-03-13-19-34-09.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -45,6 +44,10 @@
 
 <!-- 引入 Bootstrap 的 CSS 文件 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- 引入 jQuery 和 Bootstrap 的 JavaScript 文件 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -200,37 +203,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-博客搭建-20240314" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetcCode/leetcode-20240313" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      yillia实现QQ 微信弹出信息 而不是跳转页面
+      2024.3.13 日常刷题
     </h1>
   
 
         
-        <a href="/2024/03/14/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-20240314/" class="archive-article-date">
-  	<time datetime="2024-03-14T13:48:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-14</time>
+        <a href="/post/62fd7f0f.html" class="archive-article-date">
+  	<time datetime="2024-03-13T11:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原本的 yillia 下方的 subNav 是默认直接跳转，<br><img src="/images/blog-2024-03-14-21-54-26.png" alt="原本默认跳转页面"><br>这导致我的 wx 和 qq 点击后会跳转到一个非常丑的页面（这样显得我很不专业）<br>所以希望实现功能: <strong>wx 和 qq 的按钮悬浮显示设置中的内容</strong></p>
-<span id="more"></span>
-<p>具体步骤如下：</p>
-<ol>
-<li>首先在 layout&#x2F;layout.ejs 中导入所需的组件,并进行初始化<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;!-- 引入 jQuery 和 <span class="title class_">Bootstrap</span> 的 <span class="title class_">JavaScript</span> 文件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;!-- 初始化 tooltip 组件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   $(<span class="string">&#x27;[data-toggle=&quot;tooltip&quot;]&#x27;</span>).<span class="title function_">tooltip</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
-<li>定位到 subnav 的具体位置,在 layout&#x2F;_parital&#x2F;left-col.esj 中第 30 行左右</li>
-<li>修改 div social 中的对应代码，将 qq 和 wx 的部分修改,在相应的元素上添加 data-toggle&#x3D;”popover” 属性，代码如下</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> theme.<span class="property">subnav</span>)&#123; %&gt;</span><br><span class="line">	&lt;% <span class="keyword">if</span> (i === <span class="string">&#x27;qq&#x27;</span> || i === <span class="string">&#x27;weixin&#x27;</span>) &#123; %&gt;</span><br><span class="line">		<span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">data-toggle</span>=<span class="string">&quot;tooltip&quot;</span> <span class="attr">data-placement</span>=<span class="string">&quot;bottom&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&lt;%= i %&gt;: &lt;%= theme.subnav[i] %&gt;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;icon-&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">	&lt;% &#125; <span class="keyword">else</span> &#123; %&gt;</span><br><span class="line">		<span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(theme.subnav[i]) %&gt;&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;icon-&lt;%= i %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">	&lt;% &#125; %&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="22-下一个排列"><a href="#22-下一个排列" class="headerlink" title="[22]下一个排列"></a>[22]下一个排列</h2><span id="more"></span>
 
-<p>现在就可以悬浮显示 qq 和 wx 了<br><img src="/images/blog-2024-03-14-22-02-36.png" alt="悬浮显示微信"></p>
+<p><img src="/images/blog-2024-03-13-19-34-09.png" alt="下一个排列题目"></p>
+<h3 id="题目理解"><a href="#题目理解" class="headerlink" title="题目理解"></a>题目理解</h3><p>读了三遍才读懂，很难蚌<br>最终把要求捋为下面几条：</p>
+<p><strong>1. 全数升序排列是最小的，全数逆序排列是最大的<br>2. 第一个数字越大其字典序越大<br>3. 后面的数字升序排列比逆序排列小<br>4. 保证其变大的幅度尽可能最小</strong></p>
+<p>因此需要：</p>
+<p>1、从后往前找，找到第一个升序序列（i，j），此时（j,end）一定是降序的。<br>2、从（j,end）中从后往前走，找到第一个大于 nums[i]的数字 nums[k]<br>3、交换 nums[i]和 nums[k] 之间的值<br>4、将（j,end）升序排列</p>
+<p>JS 和 Python 的代码实现如下:</p>
+<p>JavaScript<br>JS 好像没有自己的内置换数的函数，还得自己写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">nums, i, j</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> temp = nums[i]</span><br><span class="line">  nums[i] = nums[j]</span><br><span class="line">  nums[j] = temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> nextPermutation = <span class="keyword">function</span>(<span class="params">nums</span>) &#123;</span><br><span class="line">  <span class="comment">// 1、从后往前找，找到第一个升序序列（i，j），此时（j,end）一定是降序的。</span></span><br><span class="line">  <span class="comment">// 2、从（j,end）中从后往前走，找到第一个大于nums[i]的数字nums[k]</span></span><br><span class="line">  <span class="comment">// 3、交换nums[i]和nums[k] 之间的值</span></span><br><span class="line">  <span class="comment">// 4、将（j,end）升序排列</span></span><br><span class="line">  <span class="keyword">let</span> len = nums.<span class="property">length</span></span><br><span class="line">  <span class="keyword">if</span> (len &lt;= <span class="number">1</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">let</span> i = len - <span class="number">2</span></span><br><span class="line">  <span class="keyword">let</span> j = len - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> k = len - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; nums[i] &gt;= nums[j]) &#123;</span><br><span class="line">    i--</span><br><span class="line">    j--</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (k &gt;= j &amp;&amp; nums[i] &gt;= nums[k]) &#123;</span><br><span class="line">      k--</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">swap</span>(nums, i, k)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> left = j</span><br><span class="line">  <span class="keyword">let</span> right = len - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> mid = <span class="title class_">Math</span>.<span class="title function_">floor</span>((left + right) / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">while</span> (left &lt;= mid) &#123;</span><br><span class="line">    <span class="title function_">swap</span>(nums, left, right)</span><br><span class="line">    left++</span><br><span class="line">    right--</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 记录从尾到头第一个降序</span></span><br><span class="line">i = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line"><span class="comment"># 记录从尾到i最大值</span></span><br><span class="line">j = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line"><span class="comment"># 寻找从尾到头第一个降序的位置</span></span><br><span class="line"><span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] &gt;= nums[i]:</span><br><span class="line">    i -= <span class="number">1</span></span><br><span class="line"><span class="comment">###防止整个数组都是降序排列</span></span><br><span class="line"><span class="keyword">if</span> i != <span class="number">0</span>:</span><br><span class="line">    <span class="comment"># 寻找从尾到i的最大数</span></span><br><span class="line">    <span class="keyword">while</span> nums[i - <span class="number">1</span>] &gt;= nums[j]:</span><br><span class="line">        j -= <span class="number">1</span></span><br><span class="line">    nums[i - <span class="number">1</span>], nums[j] = nums[j], nums[i - <span class="number">1</span>]</span><br><span class="line">nums[i:] = <span class="built_in">sorted</span>(nums[i:])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
 
@@ -244,11 +249,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常刷题</a>
         		</li>
       		
 		</ul>
@@ -260,15 +265,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/组件使用//" class="article-tag-list-link color5">组件使用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Hexo//" class="article-tag-list-link color5">Hexo</a>
+        			<a href="/categories/LeetCode//" class="article-tag-list-link color4">LeetCode</a>
         		</li>
       		
 		</ul>
@@ -276,58 +273,41 @@
 
 
       
-
       
+
+        <!-- <button>111</button> -->
         
 <div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/03/14/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-20240314/" alt="微信分享二维码">
-    </div>
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
 </div>
 
 <div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
       
       <div class="clearfix"></div>
     </div>
@@ -337,9 +317,18 @@
   
 <nav id="article-nav">
   
+    <a href="/post/730d5cf.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2024.3.14 日常刷题
+        
+      </div>
+    </a>
   
-    <a href="/2024/03/14/LeetcCode/leetcode-20240314/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2024.3.14 日常刷题</div>
+  
+    <a href="/post/d48f09f1.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于paste image设置无效的相关bug</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -473,19 +462,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>
@@ -630,10 +619,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-  <!-- 引入 jQuery 和 Bootstrap 的 JavaScript 文件 -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <!-- 初始化 tooltip 组件 -->
   <script>
     $(function () {
