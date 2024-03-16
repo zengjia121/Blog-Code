@@ -2867,11 +2867,11 @@ pre .id {
   }
   .share {
     padding: 3px 10px;
-  }  
+  }
   .share-icons a {
     /* 在这里写你想在移动设备上应用的样式 */
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     line-height: 18px;
   }
   .share-icons a:active {

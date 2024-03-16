@@ -46,9 +46,10 @@
 <!-- 引入 Bootstrap 的 CSS 文件 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- 引入 jQuery 和 Bootstrap 的 JavaScript 文件 -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -137,6 +138,7 @@
 }
 </style>
     </div>
+    <div id="pjax-container">
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
@@ -324,6 +326,15 @@
   
 <nav id="article-nav">
   
+    <a href="/post/e65e1162.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2024.3.16 日常刷题
+        
+      </div>
+    </a>
+  
   
     <a href="/post/730d5cf.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">2024.3.14 日常刷题</div>
@@ -465,6 +476,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,12 +636,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-
+</div>
   <!-- 初始化 tooltip 组件 -->
   <script>
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
-  </script>
+    $(document).pjax('a', '#pjax-container');
+     </script>
 </body>
 </html>
