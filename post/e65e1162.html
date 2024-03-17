@@ -136,8 +136,8 @@
   background-size: cover;
 }
 </style>
+      
     </div>
-    <div id="pjax-container">
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
@@ -205,7 +205,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode-20240316" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetcCode/leetcode-20240316" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -460,6 +460,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
               </li>
              
@@ -473,14 +481,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,10 +636,16 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 </div>
   <!-- 初始化 tooltip 组件 -->
   <script>
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-    $(document).pjax('a', '#pjax-container');
-     </script>
+  $(document).ready(function() {
+    // 初始化 tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // 调整 pjax 目标容器为 '#js-content'
+    $(document).pjax('a', '#js-content', { timeout: 5000 });
+
+    // 可能还需要监听 pjax 的结束事件来重新应用 JavaScript 插件或初始化代码，
+    // 但确保不要重新初始化音乐播放器
+  });
+    </script>
 </body>
 </html>
