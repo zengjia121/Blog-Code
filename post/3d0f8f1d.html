@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Category: 算法 | 烧鸭工坊</title>
+  <title>2024.3.17 日常刷题 (1) | 烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://example.com/categories/%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="组合总和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024.3.17 日常刷题 (1)">
+<meta property="og:url" content="http://example.com/post/3d0f8f1d.html">
 <meta property="og:site_name" content="烧鸭工坊">
+<meta property="og:description" content="组合总和">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/blog-2024-03-17-16-16-42.png">
+<meta property="article:published_time" content="2024-03-17T08:03:30.000Z">
+<meta property="article:modified_time" content="2024-03-17T13:52:53.127Z">
 <meta property="article:author" content="RoastDuck">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="日常刷题">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/blog-2024-03-17-16-16-42.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -197,79 +205,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-LeetcCode/leetcode-20240317-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/6cc15101.html" class="archive-article-date">
-  	<time datetime="2024-03-16T05:53:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/6cc15101.html">二分算法</a>
+    <h1 class="article-title" itemprop="name">
+      2024.3.17 日常刷题 (1)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/post/3d0f8f1d.html" class="archive-article-date">
+  	<time datetime="2024-03-17T08:03:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h2><span id="more"></span>
+
+<h3 id="题目详情"><a href="#题目详情" class="headerlink" title="题目详情"></a>题目详情</h3><p><img src="/images/blog-2024-03-17-16-16-42.png" alt="组合总和题目详情"></p>
+<h3 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h3><p>想的是和求三数之和一样，不断拆分问题，然后使用递归解决<br>即将目标值变为 target-当前数 然后当 总和等于 target 的时候返回,小于 target 的时候继续递归,大于则跳过（不做处理</p>
+<ul>
+<li>Python 实现</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum</span>(<span class="params">self, candidates: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(candidates):</span><br><span class="line">            <span class="keyword">if</span> num == target:</span><br><span class="line">                res.append([num])</span><br><span class="line">            <span class="keyword">elif</span> num &lt; target:</span><br><span class="line">              <span class="comment">#如果当前总和小于target,从当前数字后面查找组合,防止出现重复组合</span></span><br><span class="line">                <span class="keyword">for</span> r <span class="keyword">in</span> self.combinationSum(candidates[i:],target-num):</span><br><span class="line">                    res.append([num]+r)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>TypeScript 实现</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">combinationSum</span>(<span class="params">candidates: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="built_in">number</span>[][] &#123;</span><br><span class="line">  <span class="keyword">if</span> (candidates.<span class="property">length</span> === <span class="number">0</span>) <span class="keyword">return</span> [];</span><br><span class="line">  <span class="keyword">const</span> <span class="attr">res</span>: <span class="built_in">number</span>[][] = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; candidates.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (candidates[i] === target) &#123;</span><br><span class="line">      res.<span class="title function_">push</span>([candidates[i]]);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (candidates[i] &lt; target) &#123;</span><br><span class="line">      <span class="keyword">const</span> subRes = <span class="title function_">combinationSum</span>(candidates.<span class="title function_">slice</span>(i), target - candidates[i]);</span><br><span class="line">      subRes.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> res.<span class="title function_">push</span>([candidates[i], ...item]));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>TypeScript 另一种实现<br>加入了剪枝的部分，提升了运行速度</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">combinationSum</span>(<span class="params">candidates: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="built_in">number</span>[][] &#123;</span><br><span class="line">  <span class="comment">// 排序</span></span><br><span class="line">  candidates.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">  <span class="keyword">let</span> res = []; <span class="comment">// 结果集</span></span><br><span class="line">  <span class="keyword">let</span> step = []; <span class="comment">// 过程记录</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 深度优先搜索遍历</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">dfs</span> = (<span class="params">index, target</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">      res.<span class="title function_">push</span>(<span class="title class_">Array</span>.<span class="title function_">from</span>(step)); <span class="comment">// 记录结果（直接添加 step 为浅拷贝，其结果会随 step 的变化而变化）</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = index; i &lt; candidates.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> tmp = target - candidates[i];</span><br><span class="line">      <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>) <span class="keyword">return</span>; <span class="comment">// 剪枝</span></span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        step.<span class="title function_">push</span>(candidates[i]); <span class="comment">// 记录当前步骤</span></span><br><span class="line">        <span class="title function_">dfs</span>(i, tmp); <span class="comment">// 递归遍历</span></span><br><span class="line">        step.<span class="title function_">pop</span>(); <span class="comment">// 移除当前步骤</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">dfs</span>(<span class="number">0</span>, target);</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">二分查找</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常刷题</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        			<a href="/categories/LeetCode//" class="article-tag-list-link color4">LeetCode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法/二分查找//" class="article-tag-list-link color5">二分查找</a>
+        			<a href="/categories/LeetCode/回溯//" class="article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      
+
+        <!-- <button>111</button> -->
+        
+<div class="share-btn share-icons tooltip-left">
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
+</div>
+
+<div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/post/b4668f1d.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          知识图谱平台搭建:实现节点与关系信息修改
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/post/1622dcde.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.3.17 日常刷题 (2)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -292,10 +395,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

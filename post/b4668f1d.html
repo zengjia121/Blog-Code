@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Category: 算法 | 烧鸭工坊</title>
+  <title>知识图谱平台搭建:实现节点与关系信息修改 | 烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://example.com/categories/%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="重构 neo4j 前端界面实现节点与关系信息修改技术使用:Vue3+Django+neo4j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱平台搭建:实现节点与关系信息修改">
+<meta property="og:url" content="http://example.com/post/b4668f1d.html">
 <meta property="og:site_name" content="烧鸭工坊">
+<meta property="og:description" content="重构 neo4j 前端界面实现节点与关系信息修改技术使用:Vue3+Django+neo4j">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-03-17T13:17:58.000Z">
+<meta property="article:modified_time" content="2024-03-17T13:55:42.897Z">
 <meta property="article:author" content="RoastDuck">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="知识图谱">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
@@ -197,79 +203,198 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-KG-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/6cc15101.html" class="archive-article-date">
-  	<time datetime="2024-03-16T05:53:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/6cc15101.html">二分算法</a>
+    <h1 class="article-title" itemprop="name">
+      知识图谱平台搭建:实现节点与关系信息修改
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/post/b4668f1d.html" class="archive-article-date">
+  	<time datetime="2024-03-17T13:17:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="重构-neo4j-前端界面实现节点与关系信息修改"><a href="#重构-neo4j-前端界面实现节点与关系信息修改" class="headerlink" title="重构 neo4j 前端界面实现节点与关系信息修改"></a>重构 neo4j 前端界面实现节点与关系信息修改</h3><p>技术使用:Vue3+Django+neo4j</p>
+<span id="more"></span>
+
+<p>关于节点与关系信息修改，在 neo4j 中主要是使用 Cypher 语句来实现，但这样每次都要输很长一串（而且很麻烦</p>
+<p>之前实现了知识图谱的显示与点击展示知识图谱信息，所以这次信息修改任务主要分解为实现主要以下部分：</p>
+<ol>
+<li>前端<ol>
+<li>实现修改信息的输入</li>
+<li>修改信息传输至后端</li>
+<li>后端返回信息修改完成信息后图谱界面更新</li>
+</ol>
+</li>
+<li>后端<ol>
+<li>接受前端信息</li>
+<li>构建 Cypher 语句</li>
+<li>连接数据库修改信息，完成后返回结果至前端</li>
+</ol>
+</li>
+</ol>
+<h4 id="前端界面："><a href="#前端界面：" class="headerlink" title="前端界面："></a>前端界面：</h4><ul>
+<li><p>增设修改按钮，点击后将原本展示界面的 div 更换为 el-input, 这里使用 v-if 和 v-else 切换, 并确保不能修改的内容不会显示为 el-input</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &lt;el-input</span><br><span class="line">  :placeholder=<span class="string">&quot;DataDetail&quot;</span></span><br><span class="line">  v-<span class="keyword">if</span>=<span class="string">&quot;</span></span><br><span class="line"><span class="string">    showDescriptions &amp;&amp;</span></span><br><span class="line"><span class="string">    isChange &amp;&amp;</span></span><br><span class="line"><span class="string">    key != &#x27;id&#x27; &amp;&amp;</span></span><br><span class="line"><span class="string">  &quot;</span></span><br><span class="line">  v-model=<span class="string">&quot;clickData[key]&quot;</span></span><br><span class="line">  style=<span class="string">&quot;width: 220px; height: 28px&quot;</span></span><br><span class="line">&gt;&lt;/el-input&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span>&#123;&#123; DataDetail &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>修改完成后，将修改信息与当前修改节点的 id 合并，这里其实可以直接提取节点的所有信息再传输，省略掉信息合并的一步，但感觉这样加大后续的时间耗费而且可以排除没有修改直接点保存的情况<br>注：后续修改节点和修改关系的语句不同，这里要传输修改的类型是节点还是关系</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">SaveChange</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">let</span> changedData = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> id = clickData.<span class="property">value</span>[<span class="string">&quot;id&quot;</span>]</span><br><span class="line"><span class="comment">// 在调用 Object.entries 之前检查 OriginData 是否为 null</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">OriginData</span>) &#123;</span><br><span class="line">  <span class="comment">// 使用 Object.entries 方法遍历 OriginData</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(<span class="title class_">OriginData</span>)) &#123;</span><br><span class="line">    <span class="comment">// 如果 clickData.value 中的值与 OriginData 中的值不同，则将它添加到 changedData 中</span></span><br><span class="line">    <span class="keyword">if</span> (clickData.<span class="property">value</span>[key] !== value) &#123;</span><br><span class="line">      changedData[key] = clickData.<span class="property">value</span>[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果 changedData 不为空，则调用 reqChangeInfo 方法</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="title function_">keys</span>(changedData).<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title class_">KgStore</span>.<span class="title function_">getChangeInfo</span>(id, <span class="title class_">ClickType</span>.<span class="property">value</span>, changedData)</span><br><span class="line">  <span class="keyword">if</span> (res === <span class="string">&quot;success&quot;</span>) &#123;</span><br><span class="line">    isChange.<span class="property">value</span> = <span class="literal">false</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    isFail.<span class="property">value</span> = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 pinia 中更新图谱数据与发送修改请求, 因为一次只修改一个节点，所以等服务器返回修改成功后，直接修改前端数据存储的对应的节点，不用每次都重新加载图谱</p>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="title function_">getChangeInfo</span>(<span class="params">id: <span class="built_in">string</span>, <span class="keyword">type</span>: <span class="built_in">string</span>, data: <span class="built_in">object</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&quot;Node&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = <span class="variable language_">this</span>.<span class="property">Nodes</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.节点编号 === id);</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">      <span class="comment">// 使用 Object.assign 方法来合并旧的节点信息和新的信息</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">reqChangeInfo</span>(id, <span class="keyword">type</span>, data);</span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">assign</span>(node, data);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="property">message</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&quot;Rel&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> rel = <span class="variable language_">this</span>.<span class="property">Relationships</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.关系编号 === id);</span><br><span class="line">    <span class="keyword">if</span> (rel) &#123;</span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">reqChangeInfo</span>(id, <span class="keyword">type</span>, data);</span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">assign</span>(rel, data);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="property">message</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="后端部分："><a href="#后端部分：" class="headerlink" title="后端部分："></a>后端部分：</h4><p>后端主要是使用 Python 编写（该死的 我不会 Java），这部分很简单，就是获取数据，然后构建 Cypher 语句修改节点<br>顺便一提，修改节点的模板是:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MATCH</span> (n) <span class="keyword">where</span> n.id <span class="operator">=</span> $node_id <span class="keyword">SET</span> n.&#123;key&#125; <span class="operator">=</span> $&#123;key&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而修改关系的模板是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MATCH</span> () <span class="operator">-</span> [r] <span class="operator">-</span><span class="operator">&gt;</span> () <span class="keyword">where</span> r.id <span class="operator">=</span> $rel_id <span class="keyword">SET</span> n.&#123;key&#125; <span class="operator">=</span> $&#123;key&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以要在传输时记得传输修改类型<br>具体修改代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="comment"># 修改节点信息</span></span><br><span class="line"><span class="comment">##&#123;id:id,type:Node||Rel,data:&#123;属性名:属性值&#125;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">changeGraphInfo</span>(<span class="params">request</span>):</span><br><span class="line">    response = &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> request.body:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">&quot;Empty request body&quot;</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                data = json.loads(request.body)</span><br><span class="line">            <span class="keyword">except</span> json.JSONDecodeError:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">&quot;Invalid JSON in request body&quot;</span>)</span><br><span class="line">            <span class="built_in">id</span> = data.get(<span class="string">&quot;id&quot;</span>)</span><br><span class="line">            ChangeType = data.get(<span class="string">&quot;type&quot;</span>)</span><br><span class="line">            ChangeData = data.get(<span class="string">&quot;data&quot;</span>)</span><br><span class="line">            <span class="keyword">if</span> ChangeType == <span class="string">&quot;Node&quot;</span>:</span><br><span class="line">                <span class="comment"># 构建 SET 子句</span></span><br><span class="line">                set_clauses = <span class="string">&quot;, &quot;</span>.join(</span><br><span class="line">                    <span class="string">f&quot;n.<span class="subst">&#123;key&#125;</span> = $<span class="subst">&#123;key&#125;</span>&quot;</span> <span class="keyword">for</span> key <span class="keyword">in</span> ChangeData.keys()</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 使用 Graph.run 方法执行 Cypher 查询来更新节点的值</span></span><br><span class="line">                res = graph.run(</span><br><span class="line">                    <span class="string">f&quot;MATCH (n) where n.id = $node_id SET <span class="subst">&#123;set_clauses&#125;</span>&quot;</span>,</span><br><span class="line">                    node_id=<span class="built_in">id</span>,</span><br><span class="line">                    **ChangeData,</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">elif</span> ChangeType == <span class="string">&quot;Rel&quot;</span>:</span><br><span class="line">                <span class="comment"># 构建 SET 子句</span></span><br><span class="line">                set_clauses = <span class="string">&quot;, &quot;</span>.join(</span><br><span class="line">                    <span class="string">f&quot;r.<span class="subst">&#123;key&#125;</span> = $<span class="subst">&#123;key&#125;</span>&quot;</span> <span class="keyword">for</span> key <span class="keyword">in</span> ChangeData.keys()</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 使用 Graph.run 方法执行 Cypher 查询来更新节点的值</span></span><br><span class="line">                res = graph.run(</span><br><span class="line">                    <span class="string">f&quot;MATCH ()-[r]-&gt;() where r.id = $rel_id SET <span class="subst">&#123;set_clauses&#125;</span>&quot;</span>,</span><br><span class="line">                    rel_id=<span class="built_in">id</span>,</span><br><span class="line">                    **ChangeData,</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">if</span> res:</span><br><span class="line">                response[<span class="string">&quot;status&quot;</span>] = <span class="number">200</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                response[<span class="string">&quot;status&quot;</span>] = <span class="number">500</span></span><br><span class="line">                response[<span class="string">&quot;message&quot;</span>] = <span class="string">&quot;No data changed&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        response[<span class="string">&quot;status&quot;</span>] = <span class="number">500</span></span><br><span class="line">        response[<span class="string">&quot;message&quot;</span>] = <span class="built_in">str</span>(e)</span><br><span class="line">        response[<span class="string">&quot;error_num&quot;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> JsonResponse(response)</span><br></pre></td></tr></table></figure>
+
+<p>总而言之，修改部分这样就完成了，没有具体界面展示（我懒得启动服务器（（</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">二分查找</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">知识图谱</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        			<a href="/categories/前端开发//" class="article-tag-list-link color5">前端开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法/二分查找//" class="article-tag-list-link color5">二分查找</a>
+        			<a href="/categories/前端开发/平台搭建//" class="article-tag-list-link color5">平台搭建</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      
+
+        <!-- <button>111</button> -->
+        
+<div class="share-btn share-icons tooltip-left">
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
+</div>
+
+<div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/post/2dc544e2.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2024.3.18 日常刷题
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/post/3d0f8f1d.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.3.17 日常刷题 (1)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -292,10 +417,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

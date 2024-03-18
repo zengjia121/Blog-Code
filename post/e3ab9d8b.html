@@ -18,10 +18,10 @@
 <meta property="og:image" content="http://example.com/images/blog-2024-03-14-21-54-26.png">
 <meta property="og:image" content="http://example.com/images/blog-2024-03-14-22-02-36.png">
 <meta property="article:published_time" content="2024-03-14T13:48:26.000Z">
-<meta property="article:modified_time" content="2024-03-15T14:33:28.448Z">
+<meta property="article:modified_time" content="2024-03-17T13:55:09.408Z">
 <meta property="article:author" content="RoastDuck">
-<meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="前端">
+<meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/blog-2024-03-14-21-54-26.png">
   
@@ -228,6 +228,7 @@
       
         <p>原本的 yillia 下方的 subNav 是默认直接跳转，<br><img src="/images/blog-2024-03-14-21-54-26.png" alt="原本默认跳转页面"><br>这导致我的 wx 和 qq 点击后会跳转到一个非常丑的页面（这样显得我很不专业）<br>所以希望实现功能: <strong>wx 和 qq 的按钮悬浮显示设置中的内容</strong></p>
 <span id="more"></span>
+
 <p>具体步骤如下：</p>
 <ol>
 <li>首先在 layout&#x2F;layout.ejs 中导入所需的组件,并进行初始化<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;!-- 引入 jQuery 和 <span class="title class_">Bootstrap</span> 的 <span class="title class_">JavaScript</span> 文件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;!-- 初始化 tooltip 组件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   $(<span class="string">&#x27;[data-toggle=&quot;tooltip&quot;]&#x27;</span>).<span class="title function_">tooltip</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
@@ -250,11 +251,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
         		</li>
       		
 		</ul>
@@ -266,11 +267,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        			<a href="/categories/前端开发//" class="article-tag-list-link color5">前端开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/前端/组件使用//" class="article-tag-list-link color5">组件使用</a>
+        			<a href="/categories/前端开发/组件使用//" class="article-tag-list-link color5">组件使用</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -463,11 +464,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
+                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,11 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
