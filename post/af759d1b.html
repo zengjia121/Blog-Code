@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Category: 杂物堆 | 烧鸭工坊</title>
+  <title>知识图谱平台搭建:文件上传页面搭建 | 烧鸭工坊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://example.com/categories/%E6%9D%82%E7%89%A9%E5%A0%86/index.html">
+  <meta name="description" content="基于 el-upload 实现添加、删除、批量上传 csv 文件技术使用:Vue3 + element-plus + axios + Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱平台搭建:文件上传页面搭建">
+<meta property="og:url" content="http://example.com/post/af759d1b.html">
 <meta property="og:site_name" content="烧鸭工坊">
+<meta property="og:description" content="基于 el-upload 实现添加、删除、批量上传 csv 文件技术使用:Vue3 + element-plus + axios + Django">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/blog-2024-03-19-20-07-37.png">
+<meta property="article:published_time" content="2024-03-19T11:28:24.000Z">
+<meta property="article:modified_time" content="2024-03-19T12:43:24.156Z">
 <meta property="article:author" content="RoastDuck">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="知识图谱">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/blog-2024-03-19-20-07-37.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -197,75 +205,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-KG/KG-2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/d48f09f1.html" class="archive-article-date">
-  	<time datetime="2024-03-12T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/d48f09f1.html">关于paste image设置无效的相关bug</a>
+    <h1 class="article-title" itemprop="name">
+      知识图谱平台搭建:文件上传页面搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/post/af759d1b.html" class="archive-article-date">
+  	<time datetime="2024-03-19T11:28:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- @format -->
+
+<h3 id="基于-el-upload-实现添加、删除、批量上传-csv-文件"><a href="#基于-el-upload-实现添加、删除、批量上传-csv-文件" class="headerlink" title="基于 el-upload 实现添加、删除、批量上传 csv 文件"></a>基于 el-upload 实现添加、删除、批量上传 csv 文件</h3><p>技术使用:Vue3 + element-plus + axios + Django</p>
+<span id="more"></span>
+
+<p>这次是实现从前端传送 csv 文件然后到后端进行知识图谱的构建的过程，完成数据库的增删改查中的增添功能。<br>虽然 el-upload 组件有自动上传以及单个文件点击删除等功能，然而默认的样式有点丑，而且上传多个文件的时候是重复调用接口，但我需要通过文件存储在同一个文件夹下，也就是批量上传，所以整合了一下这个页面的需求：</p>
+<ol>
+<li>el-upload 界面美化</li>
+<li>点击按钮单个文件删除</li>
+<li>文件一次批量上传</li>
+</ol>
+<p>最终页面如下：<br><img src="/images/blog-2024-03-19-20-07-37.png" alt="上传页面"></p>
+<ul>
+<li><h3 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h3></li>
+</ul>
+<ul>
+<li><h4 id="el-upload-组件设置"><a href="#el-upload-组件设置" class="headerlink" title="el-upload 组件设置"></a>el-upload 组件设置</h4></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-upload</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;upload&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">ref</span>=<span class="string">&quot;uploadRef&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:file-list</span>=<span class="string">&quot;fileList&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">list-type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">drag</span></span></span><br><span class="line"><span class="tag">  <span class="attr">multiple</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:http-request</span>=<span class="string">&quot;submitUpload&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:action</span>=<span class="string">&quot;postUrl&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:on-change</span>=<span class="string">&quot;ChangeFile&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:on-remove</span>=<span class="string">&quot;handleRemove&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:auto-upload</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:before-upload</span>=<span class="string">&quot;beforeUpload&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>首先是关闭自动上传按钮<code>:auto-upload=&quot;false&quot;</code>，改为使用 button 触发自定义上传函数<code>:http-request=&quot;submitUpload&quot;</code>，此外，upload 组件不会自动更新<code>:file-list=&quot;fileList&quot;</code>，所以需要在文件添加时触发加入事件<code>:on-change=&quot;ChangeFile&quot;</code>，和删除时触发删除事件<code>:on-remove=&quot;handleRemove&quot;</code></p>
+<ul>
+<li><h5 id="fileList-设置"><a href="#fileList-设置" class="headerlink" title="fileList 设置"></a>fileList 设置</h5><p>文件加入时会触发<code>on-change</code>事件，需要在这时候把文件加入 fileList 中，并且由于<code>on-change</code>是文件变动便会触发，单纯每次触发都加入的话，会在删除时重复加入文件，所以要判断是否存在相同的文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件状态更改</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">ChangeFile</span> = (<span class="params">file: UploadUserFile</span>) =&gt; &#123;</span><br><span class="line"><span class="comment">//文件添加时加入fileList</span></span><br><span class="line"><span class="keyword">if</span> (!fileList.<span class="property">value</span>.<span class="title function_">some</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">uid</span> === file.<span class="property">uid</span>)) &#123;</span><br><span class="line">  fileList.<span class="property">value</span>.<span class="title function_">push</span>(file)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以在点击图标时只删除一个文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">handleRemove</span> = (<span class="params">file: UploadUserFile</span>) =&gt; &#123;</span><br><span class="line"><span class="comment">//删除单个文件</span></span><br><span class="line">fileList.<span class="property">value</span> = fileList.<span class="property">value</span>.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">uid</span> !== file.<span class="property">uid</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以及清空全部文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清空所有文件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">clearFiles</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">if</span> (uploadRef.<span class="property">value</span>) uploadRef.<span class="property">value</span>.<span class="title function_">clearFiles</span>()</span><br><span class="line">fileList.<span class="property">value</span> = []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="自定义上传设置"><a href="#自定义上传设置" class="headerlink" title="自定义上传设置"></a>自定义上传设置</h5></li>
+</ul>
+<p>网上很多教程是直接调用 axios 进行传输，虽然自己二次封装了 axios，但操作其实差不多，具体就是：</p>
+<ol>
+<li>判断所有传输文件是否符合要求格式</li>
+<li>将多个数据合并为一个 FormData</li>
+<li>使用 axios 将文件传输</li>
+<li>传输成功后清空文件列表，否则弹出消息窗</li>
+</ol>
+<p>首先是在文件传输前判断要求，使用<code>:before-upload=&quot;beforeUpload&quot;</code>进行判断类型和文件大小是否符合</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">beforeUpload</span> = (<span class="params">file: File</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> isCsv =</span><br><span class="line">    file.<span class="property">type</span> ===</span><br><span class="line">      <span class="string">&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot;</span> ||</span><br><span class="line">    file.<span class="property">type</span> === <span class="string">&quot;application/vnd.ms-excel&quot;</span> ||</span><br><span class="line">    file.<span class="property">type</span> === <span class="string">&quot;text/csv&quot;</span></span><br><span class="line">  <span class="keyword">if</span> (!isCsv) &#123;</span><br><span class="line">    <span class="title class_">ElMessage</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;只能上传csv文件&quot;</span>, <span class="attr">type</span>: <span class="string">&quot;warning&quot;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> isLt2M = file.<span class="property">size</span> / <span class="number">1024</span> / <span class="number">1024</span> &lt; <span class="number">10</span></span><br><span class="line">  <span class="keyword">if</span> (!isLt2M) &#123;</span><br><span class="line">    <span class="title class_">ElMessage</span>(&#123;</span><br><span class="line">      <span class="attr">message</span>: <span class="string">`上传文件大小不能超过 <span class="subst">$&#123;maxFileSize&#125;</span>MB!`</span>,</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;warning&quot;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> isCsv &amp;&amp; isLt2M</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接着在自定义的上传函数<code>:http-request=&quot;submitUpload&quot;</code>中将文件拼成一个 FormData，再调用自己的接口进行传输</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件上传</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">submitUpload</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fileList.<span class="property">value</span>)</span><br><span class="line"><span class="keyword">const</span> form = <span class="keyword">new</span> <span class="title class_">FormData</span>()</span><br><span class="line">fileList.<span class="property">value</span>?.<span class="title function_">forEach</span>(<span class="function">(<span class="params">file: UploadUserFile, index: <span class="built_in">number</span></span>) =&gt;</span></span><br><span class="line"> form.<span class="title function_">append</span>(<span class="string">`file<span class="subst">$&#123;index&#125;</span>`</span>, file.<span class="property">raw</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title function_">reqUploadFile</span>(form)</span><br><span class="line"><span class="keyword">if</span> (res.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line"> <span class="title class_">ElMessage</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;上传成功&quot;</span>, <span class="attr">type</span>: <span class="string">&quot;success&quot;</span> &#125;)</span><br><span class="line"> <span class="comment">//上传成功清除上传列表</span></span><br><span class="line"> <span class="keyword">if</span> (uploadRef.<span class="property">value</span>) uploadRef.<span class="property">value</span>.<span class="title function_">clearFiles</span>()</span><br><span class="line"> fileList.<span class="property">value</span> = []</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"> <span class="title class_">ElMessage</span>(&#123;</span><br><span class="line">   <span class="attr">showClose</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">center</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">dangerouslyUseHTMLString</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">message</span>: <span class="string">`&lt;p&gt;<span class="subst">$&#123;res.message&#125;</span>&lt;/p&gt;`</span>,</span><br><span class="line">   <span class="attr">type</span>: <span class="string">&quot;error&quot;</span>,</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后是自己的接口，传输时注意要设置 headers</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传输文件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">reqUploadFile</span> = (<span class="params">data: FormData</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">AxiosService</span>.<span class="title function_">post</span>(<span class="string">`/api_KG/createGraph`</span>, data, &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;multipart/form-data&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="后端部分"><a href="#后端部分" class="headerlink" title="后端部分"></a>后端部分</h3>后端部分比较简单，缺少很多文件的验证与其他信息，看看后续有没有空加上</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将传输的文件存储在本地</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_uploaded_file</span>(<span class="params">uploaded_file, destination_path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(destination_path, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> destination_file:</span><br><span class="line">        <span class="keyword">for</span> chunk <span class="keyword">in</span> uploaded_file.chunks():</span><br><span class="line">            destination_file.write(chunk)</span><br><span class="line"></span><br><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="comment">### 读取csv新增事件图谱</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createGraph</span>(<span class="params">request</span>):</span><br><span class="line">    response = &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">            <span class="comment"># print(request)</span></span><br><span class="line">            <span class="comment"># print(request.FILES)</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> request.body:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">&quot;Empty request body&quot;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> request.FILES:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">&quot;No file uploaded&quot;</span>)</span><br><span class="line">            nanoid = generate()</span><br><span class="line">            <span class="keyword">for</span> key, uploaded_file <span class="keyword">in</span> request.FILES.items():</span><br><span class="line">                Save_Path = <span class="string">f&quot;G:/code/Django/helloworld/UploadData/<span class="subst">&#123;nanoid&#125;</span>/&quot;</span></span><br><span class="line">                destination_path = Save_Path + uploaded_file.name</span><br><span class="line">                os.makedirs(os.path.dirname(destination_path), exist_ok=<span class="literal">True</span>)</span><br><span class="line">                handle_uploaded_file(uploaded_file, destination_path)</span><br><span class="line">            response[<span class="string">&quot;status&quot;</span>] = <span class="number">200</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            response[<span class="string">&quot;status&quot;</span>] = <span class="number">500</span></span><br><span class="line">            response[<span class="string">&quot;message&quot;</span>] = <span class="string">&quot;Invalid request method&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        response[<span class="string">&quot;status&quot;</span>] = <span class="number">500</span></span><br><span class="line">        response[<span class="string">&quot;message&quot;</span>] = <span class="built_in">str</span>(e)</span><br><span class="line">        response[<span class="string">&quot;error_num&quot;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> JsonResponse(response)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>这次只达成了文件传输功能，对于错误处理、文件验证、进度反馈等还没有编写，提醒一下自己，记得补上</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vscode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bug</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">知识图谱</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/杂物堆//" class="article-tag-list-link color4">杂物堆</a>
+        			<a href="/categories/前端开发//" class="article-tag-list-link color5">前端开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端开发/平台搭建//" class="article-tag-list-link color5">平台搭建</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      
+
+        <!-- <button>111</button> -->
+        
+<div class="share-btn share-icons tooltip-left">
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
+</div>
+
+<div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/post/8f6fcdfc.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式-1
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/post/2dc544e2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.3.18 日常刷题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -288,10 +434,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
