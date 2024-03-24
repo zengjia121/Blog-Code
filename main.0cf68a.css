@@ -3636,3 +3636,9 @@ a.pswp__share--download:hover {
   color: #ccc;
   text-decoration: underline;
 }
+.declare {
+  background-color: #eaeaea;
+  margin-top: 1em;
+  border-left: 3px solid #35cbbf;
+  padding: 0.5em 1em;
+}
