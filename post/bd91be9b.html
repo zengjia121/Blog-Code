@@ -5,27 +5,27 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="http://zengjia121.github.io">
   <title>JavaScript的事件循环机制 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JavaScript的事件循环机制与宏任务和微任务">
+  <meta name="description" content="JavaScript的事件循环机制与宏任务和微任务 JavaScript的事件循环机制与宏任务和微任务 JavaScript的特点 – 单线程 JS如何解决单线程阻塞问题 – 同步任务与异步任务 宏任务与微任务 宏任务微任务执行顺序 – 先同步再异步，异步中先微任务，再宏任务 async与await async await   Promise对象 一些示例题目 示例1： 示例2： 示例3：   奇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的事件循环机制">
-<meta property="og:url" content="http://example.com/post/bd91be9b.html">
+<meta property="og:url" content="http://zengjia121.github.io/post/bd91be9b.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="JavaScript的事件循环机制与宏任务和微任务">
+<meta property="og:description" content="JavaScript的事件循环机制与宏任务和微任务 JavaScript的事件循环机制与宏任务和微任务 JavaScript的特点 – 单线程 JS如何解决单线程阻塞问题 – 同步任务与异步任务 宏任务与微任务 宏任务微任务执行顺序 – 先同步再异步，异步中先微任务，再宏任务 async与await async await   Promise对象 一些示例题目 示例1： 示例2： 示例3：   奇">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-24-17-22-11.png">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-24-17-33-32.png">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-24-17-50-31.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-24-17-22-11.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-24-17-33-32.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-24-17-50-31.png">
 <meta property="article:published_time" content="2024-03-24T08:51:40.000Z">
-<meta property="article:modified_time" content="2024-03-24T11:01:49.992Z">
+<meta property="article:modified_time" content="2024-03-25T03:28:32.580Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/blog-2024-03-24-17-22-11.png">
+<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-03-24-17-22-11.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -236,7 +236,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JavaScript的事件循环机制与宏任务和微任务"><a href="#JavaScript的事件循环机制与宏任务和微任务" class="headerlink" title="JavaScript的事件循环机制与宏任务和微任务"></a>JavaScript的事件循环机制与宏任务和微任务</h2><span id="more"></span>
+        <h2 id="JavaScript的事件循环机制与宏任务和微任务"><a href="#JavaScript的事件循环机制与宏任务和微任务" class="headerlink" title="JavaScript的事件循环机制与宏任务和微任务"></a>JavaScript的事件循环机制与宏任务和微任务</h2><ul>
+<li><a href="#javascript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1">JavaScript的事件循环机制与宏任务和微任务</a><ul>
+<li><a href="#javascript%E7%9A%84%E7%89%B9%E7%82%B9----%E5%8D%95%E7%BA%BF%E7%A8%8B">JavaScript的特点 – 单线程</a></li>
+<li><a href="#js%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98----%E5%90%8C%E6%AD%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1">JS如何解决单线程阻塞问题 – 同步任务与异步任务</a></li>
+<li><a href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1">宏任务与微任务</a></li>
+<li><a href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F----%E5%85%88%E5%90%8C%E6%AD%A5%E5%86%8D%E5%BC%82%E6%AD%A5%E5%BC%82%E6%AD%A5%E4%B8%AD%E5%85%88%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%86%8D%E5%AE%8F%E4%BB%BB%E5%8A%A1">宏任务微任务执行顺序 – 先同步再异步，异步中先微任务，再宏任务</a></li>
+<li><a href="#async%E4%B8%8Eawait">async与await</a><ul>
+<li><a href="#async">async</a></li>
+<li><a href="#await">await</a></li>
+</ul>
+</li>
+<li><a href="#promise%E5%AF%B9%E8%B1%A1">Promise对象</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E7%A4%BA%E4%BE%8B%E9%A2%98%E7%9B%AE">一些示例题目</a><ul>
+<li><a href="#%E7%A4%BA%E4%BE%8B1">示例1：</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B2">示例2：</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B3">示例3：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9">奇怪的知识点</a><span id="more"></span></li>
+</ul>
+</li>
+</ul>
 <h3 id="JavaScript的特点-–-单线程"><a href="#JavaScript的特点-–-单线程" class="headerlink" title="JavaScript的特点 – 单线程"></a>JavaScript的特点 – 单线程</h3><p>JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</p>
 <p>因此，JavaScript语言的一大特点就是<strong>单线程</strong>，即同一个时间只能做一件事。</p>
 <h3 id="JS如何解决单线程阻塞问题-–-同步任务与异步任务"><a href="#JS如何解决单线程阻塞问题-–-同步任务与异步任务" class="headerlink" title="JS如何解决单线程阻塞问题 – 同步任务与异步任务"></a>JS如何解决单线程阻塞问题 – 同步任务与异步任务</h3><p>因为浏览器是多线程的，当 JS 需要执行异步任务时，<strong>浏览器会另外启动一个线程去执行该任务</strong>。</p>
@@ -403,7 +424,7 @@
 <li>执行微任务队列中的任务。Promise.then 是微任务，所以 “异步1微任务then” 会接着打印出来。</li>
 <li>执行下一个宏任务。setTimeout 的回调函数是宏任务，所以 “异步1任务time2” 会最后打印出来。</li>
 </ol>
-<h3 id="示例3："><a href="#示例3：" class="headerlink" title="示例3："></a>示例3：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码1：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印出 10</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//代码2：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印出 0 到 9</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="示例3："><a href="#示例3：" class="headerlink" title="示例3："></a>示例3：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码1：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印出 10</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//代码2：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印出 0 到 9</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>代码解析：</li>
 </ul>
@@ -433,7 +454,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/post/bd91be9b.html" title="JavaScript的事件循环机制" target="_blank">http://example.com/post/bd91be9b.html</a>
+          <a href="http://zengjia121.github.io/post/bd91be9b.html" title="JavaScript的事件循环机制" target="_blank">http://zengjia121.github.io/post/bd91be9b.html</a>
         </li>
         
         <li>
@@ -654,19 +675,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,15 +707,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

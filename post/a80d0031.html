@@ -5,25 +5,25 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="http://zengjia121.github.io">
   <title>动态规划 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是动态规划">
+  <meta name="description" content="什么是动态规划 什么是动态规划 动态规划适用情况与场景 动态规划解题步骤 步骤一、定义子问题 步骤二、写出子问题的递推关系 步骤三、确定 DP 数组的计算顺序 步骤四、空间优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划">
-<meta property="og:url" content="http://example.com/post/a80d0031.html">
+<meta property="og:url" content="http://zengjia121.github.io/post/a80d0031.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="什么是动态规划">
+<meta property="og:description" content="什么是动态规划 什么是动态规划 动态规划适用情况与场景 动态规划解题步骤 步骤一、定义子问题 步骤二、写出子问题的递推关系 步骤三、确定 DP 数组的计算顺序 步骤四、空间优化">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/images/blog-2024-03-22-22-59-05.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-22-22-59-05.png">
 <meta property="article:published_time" content="2024-03-22T14:46:35.000Z">
-<meta property="article:modified_time" content="2024-03-24T09:58:08.816Z">
+<meta property="article:modified_time" content="2024-03-25T05:53:52.325Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/blog-2024-03-22-22-59-05.png">
+<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-03-22-22-59-05.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -234,8 +234,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h3><span id="more"></span>
-<p>动态规划与分治方法类似，都是通过组合子问题的解来来求解原问题。</p>
+        <h3 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h3><ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">什么是动态规划</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%80%82%E7%94%A8%E6%83%85%E5%86%B5%E4%B8%8E%E5%9C%BA%E6%99%AF">动态规划适用情况与场景</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4">动态规划解题步骤</a><ul>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%AE%9A%E4%B9%89%E5%AD%90%E9%97%AE%E9%A2%98">步骤一、定义子问题</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%86%99%E5%87%BA%E5%AD%90%E9%97%AE%E9%A2%98%E7%9A%84%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB">步骤二、写出子问题的递推关系</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E7%A1%AE%E5%AE%9A-dp-%E6%95%B0%E7%BB%84%E7%9A%84%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F">步骤三、确定 DP 数组的计算顺序</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E5%9B%9B%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96">步骤四、空间优化</a><span id="more"></span>
+动态规划与分治方法类似，都是通过组合子问题的解来来求解原问题。</li>
+</ul>
+</li>
+</ul>
 <ul>
 <li>分治方法将问题划分为互不相交的子问题，递归的求解子问题，再将它们的解组合起来，求出原问题的解。</li>
 <li>动态规划将复杂的问题分解为若干子问题，通过综合子问题的最优解来得到原问题的最优解,并将每个求解过的子问题记录下来，这样下次碰到相同的子问题，就可以直接使用之前记录的结果，而不重复计算。</li>
@@ -264,7 +274,7 @@
 <li>一种是自底向上的、使用 DP 数组的循环方法</li>
 </ul>
 <p>不过在普通的动态规划题目中，99% 的情况我们用循环方法就很好解决，<strong>所以我们最好在一开始就坚持自底向上方法</strong>，使用 DP 数组，这样才有助于领悟动态规划的真正精髓。</p>
-<h3 id="步骤四、空间优化"><a href="#步骤四、空间优化" class="headerlink" title="步骤四、空间优化"></a>步骤四、空间优化</h3><p>空间优化的基本原理是，<strong>很多时候我们并不需要始终持有全部的 DP 数组。</strong></p>
+<h4 id="步骤四、空间优化"><a href="#步骤四、空间优化" class="headerlink" title="步骤四、空间优化"></a>步骤四、空间优化</h4><p>空间优化的基本原理是，<strong>很多时候我们并不需要始终持有全部的 DP 数组。</strong></p>
 
       
 
@@ -278,7 +288,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/post/a80d0031.html" title="动态规划" target="_blank">http://example.com/post/a80d0031.html</a>
+          <a href="http://zengjia121.github.io/post/a80d0031.html" title="动态规划" target="_blank">http://zengjia121.github.io/post/a80d0031.html</a>
         </li>
         
         <li>
@@ -508,19 +518,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,15 +550,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

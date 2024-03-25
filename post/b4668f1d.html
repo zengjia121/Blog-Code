@@ -5,19 +5,19 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="http://zengjia121.github.io">
   <title>知识图谱平台搭建:实现节点与关系信息修改 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="重构 neo4j 前端界面实现节点与关系信息修改技术使用:Vue3+Django+neo4j">
+  <meta name="description" content="重构 neo4j 前端界面实现节点与关系信息修改 重构 neo4j 前端界面实现节点与关系信息修改 前端界面： 后端部分：    技术使用:Vue3+Django+neo4j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识图谱平台搭建:实现节点与关系信息修改">
-<meta property="og:url" content="http://example.com/post/b4668f1d.html">
+<meta property="og:url" content="http://zengjia121.github.io/post/b4668f1d.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="重构 neo4j 前端界面实现节点与关系信息修改技术使用:Vue3+Django+neo4j">
+<meta property="og:description" content="重构 neo4j 前端界面实现节点与关系信息修改 重构 neo4j 前端界面实现节点与关系信息修改 前端界面： 后端部分：    技术使用:Vue3+Django+neo4j">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-03-17T13:17:58.000Z">
-<meta property="article:modified_time" content="2024-03-17T13:55:42.897Z">
+<meta property="article:modified_time" content="2024-03-25T03:35:11.556Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="知识图谱">
@@ -232,7 +232,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="重构-neo4j-前端界面实现节点与关系信息修改"><a href="#重构-neo4j-前端界面实现节点与关系信息修改" class="headerlink" title="重构 neo4j 前端界面实现节点与关系信息修改"></a>重构 neo4j 前端界面实现节点与关系信息修改</h3><p>技术使用:Vue3+Django+neo4j</p>
+        <h3 id="重构-neo4j-前端界面实现节点与关系信息修改"><a href="#重构-neo4j-前端界面实现节点与关系信息修改" class="headerlink" title="重构 neo4j 前端界面实现节点与关系信息修改"></a>重构 neo4j 前端界面实现节点与关系信息修改</h3><ul>
+<li><a href="#%E9%87%8D%E6%9E%84-neo4j-%E5%89%8D%E7%AB%AF%E7%95%8C%E9%9D%A2%E5%AE%9E%E7%8E%B0%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B3%E7%B3%BB%E4%BF%A1%E6%81%AF%E4%BF%AE%E6%94%B9">重构 neo4j 前端界面实现节点与关系信息修改</a><ul>
+<li><a href="#%E5%89%8D%E7%AB%AF%E7%95%8C%E9%9D%A2">前端界面：</a></li>
+<li><a href="#%E5%90%8E%E7%AB%AF%E9%83%A8%E5%88%86">后端部分：</a></li>
+</ul>
+</li>
+</ul>
+<p>技术使用:Vue3+Django+neo4j</p>
 <span id="more"></span>
 
 <p>关于节点与关系信息修改，在 neo4j 中主要是使用 Cypher 语句来实现，但这样每次都要输很长一串（而且很麻烦</p>
@@ -287,7 +294,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/post/b4668f1d.html" title="知识图谱平台搭建:实现节点与关系信息修改" target="_blank">http://example.com/post/b4668f1d.html</a>
+          <a href="http://zengjia121.github.io/post/b4668f1d.html" title="知识图谱平台搭建:实现节点与关系信息修改" target="_blank">http://zengjia121.github.io/post/b4668f1d.html</a>
         </li>
         
         <li>
@@ -390,8 +397,8 @@
     </a>
   
   
-    <a href="/post/1622dcde.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2024.3.17 日常刷题 (2)</div>
+    <a href="/post/3d0f8f1d.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.3.17 日常刷题 (1)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -517,19 +524,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +556,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

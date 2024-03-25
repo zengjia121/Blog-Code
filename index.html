@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="http://zengjia121.github.io">
   <title>烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://zengjia121.github.io/index.html">
 <meta property="og:site_name" content="烧鸭工坊">
 <meta property="og:locale">
 <meta property="article:author" content="RoastDuck">
@@ -228,7 +228,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JavaScript的事件循环机制与宏任务和微任务"><a href="#JavaScript的事件循环机制与宏任务和微任务" class="headerlink" title="JavaScript的事件循环机制与宏任务和微任务"></a>JavaScript的事件循环机制与宏任务和微任务</h2>
+        <h2 id="JavaScript的事件循环机制与宏任务和微任务"><a href="#JavaScript的事件循环机制与宏任务和微任务" class="headerlink" title="JavaScript的事件循环机制与宏任务和微任务"></a>JavaScript的事件循环机制与宏任务和微任务</h2><ul>
+<li><a href="#javascript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1">JavaScript的事件循环机制与宏任务和微任务</a><ul>
+<li><a href="#javascript%E7%9A%84%E7%89%B9%E7%82%B9----%E5%8D%95%E7%BA%BF%E7%A8%8B">JavaScript的特点 – 单线程</a></li>
+<li><a href="#js%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98----%E5%90%8C%E6%AD%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1">JS如何解决单线程阻塞问题 – 同步任务与异步任务</a></li>
+<li><a href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1">宏任务与微任务</a></li>
+<li><a href="#%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F----%E5%85%88%E5%90%8C%E6%AD%A5%E5%86%8D%E5%BC%82%E6%AD%A5%E5%BC%82%E6%AD%A5%E4%B8%AD%E5%85%88%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%86%8D%E5%AE%8F%E4%BB%BB%E5%8A%A1">宏任务微任务执行顺序 – 先同步再异步，异步中先微任务，再宏任务</a></li>
+<li><a href="#async%E4%B8%8Eawait">async与await</a><ul>
+<li><a href="#async">async</a></li>
+<li><a href="#await">await</a></li>
+</ul>
+</li>
+<li><a href="#promise%E5%AF%B9%E8%B1%A1">Promise对象</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E7%A4%BA%E4%BE%8B%E9%A2%98%E7%9B%AE">一些示例题目</a><ul>
+<li><a href="#%E7%A4%BA%E4%BE%8B1">示例1：</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B2">示例2：</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B3">示例3：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9">奇怪的知识点</a>
         
           <a class="article-more-a" href="/post/bd91be9b.html#more">more >></a>
         
@@ -325,7 +343,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h3>
+        <h3 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h3><ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">什么是动态规划</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%80%82%E7%94%A8%E6%83%85%E5%86%B5%E4%B8%8E%E5%9C%BA%E6%99%AF">动态规划适用情况与场景</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4">动态规划解题步骤</a><ul>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%AE%9A%E4%B9%89%E5%AD%90%E9%97%AE%E9%A2%98">步骤一、定义子问题</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%86%99%E5%87%BA%E5%AD%90%E9%97%AE%E9%A2%98%E7%9A%84%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB">步骤二、写出子问题的递推关系</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E7%A1%AE%E5%AE%9A-dp-%E6%95%B0%E7%BB%84%E7%9A%84%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F">步骤三、确定 DP 数组的计算顺序</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E5%9B%9B%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96">步骤四、空间优化</a>
         
           <a class="article-more-a" href="/post/a80d0031.html#more">more >></a>
         
@@ -521,7 +546,11 @@
       
         <!-- @format -->
 
-<h3 id="前端解决跨域问题"><a href="#前端解决跨域问题" class="headerlink" title="前端解决跨域问题"></a>前端解决跨域问题</h3>
+<h3 id="前端解决跨域问题"><a href="#前端解决跨域问题" class="headerlink" title="前端解决跨域问题"></a>前端解决跨域问题</h3><ul>
+<li><a href="#%E5%89%8D%E7%AB%AF%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98">前端解决跨域问题</a><ul>
+<li><a href="#%E4%B8%80%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F">一、什么是跨域</a></li>
+<li><a href="#%E4%BA%8C%E8%B7%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3">二、跨域如何解决</a></li>
+<li><a href="#%E4%B8%89vue-%E4%B8%AD%E4%BD%BF%E7%94%A8-axios-%E5%8F%91%E9%80%81%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E5%90%AB%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85">三、Vue 中使用 axios 发送跨域请求（含二次封装）</a>
         
           <a class="article-more-a" href="/post/1663e6f.html#more">more >></a>
         
@@ -620,7 +649,11 @@
       
         <!-- @format -->
 
-<h3 id="HTTP-和-HTTPS"><a href="#HTTP-和-HTTPS" class="headerlink" title="HTTP 和 HTTPS"></a>HTTP 和 HTTPS</h3>
+<h3 id="HTTP-和-HTTPS"><a href="#HTTP-和-HTTPS" class="headerlink" title="HTTP 和 HTTPS"></a>HTTP 和 HTTPS</h3><ul>
+<li><a href="#http-%E5%92%8C-https">HTTP 和 HTTPS</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-http">什么是 HTTP</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-https">什么是 HTTPS</a></li>
+<li><a href="#http-%E4%B8%8E-https-%E5%8C%BA%E5%88%AB">HTTP 与 HTTPS 区别</a>
         
           <a class="article-more-a" href="/post/3868d0f3.html#more">more >></a>
         
@@ -814,7 +847,17 @@
       
         <!-- @format -->
 
-<h3 id="基于-el-upload-实现添加、删除、批量上传-csv-文件"><a href="#基于-el-upload-实现添加、删除、批量上传-csv-文件" class="headerlink" title="基于 el-upload 实现添加、删除、批量上传 csv 文件"></a>基于 el-upload 实现添加、删除、批量上传 csv 文件</h3><p>技术使用:Vue3 + element-plus + axios + Django</p>
+<h2 id="基于-el-upload-实现添加、删除、批量上传-csv-文件"><a href="#基于-el-upload-实现添加、删除、批量上传-csv-文件" class="headerlink" title="基于 el-upload 实现添加、删除、批量上传 csv 文件"></a>基于 el-upload 实现添加、删除、批量上传 csv 文件</h2><p>技术使用:Vue3 + element-plus + axios + Django</p>
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8E-el-upload-%E5%AE%9E%E7%8E%B0%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E6%89%B9%E9%87%8F%E4%B8%8A%E4%BC%A0-csv-%E6%96%87%E4%BB%B6">基于 el-upload 实现添加、删除、批量上传 csv 文件</a><ul>
+<li><a href="#%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86">前端部分</a><ul>
+<li><a href="#el-upload-%E7%BB%84%E4%BB%B6%E8%AE%BE%E7%BD%AE">el-upload 组件设置</a></li>
+<li><a href="#filelist-%E8%AE%BE%E7%BD%AE">fileList 设置</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E8%AE%BE%E7%BD%AE">自定义上传设置</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E7%AB%AF%E9%83%A8%E5%88%86">后端部分</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a>
         
           <a class="article-more-a" href="/post/af759d1b.html#more">more >></a>
         
@@ -948,11 +991,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/哈希表//" class="article-tag-list-link color4">哈希表</a>
+        			<a href="/categories/LeetCode/回溯//" class="article-tag-list-link color3">回溯</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/回溯//" class="article-tag-list-link color3">回溯</a>
+        			<a href="/categories/LeetCode/哈希表//" class="article-tag-list-link color4">哈希表</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1016,7 +1059,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="重构-neo4j-前端界面实现节点与关系信息修改"><a href="#重构-neo4j-前端界面实现节点与关系信息修改" class="headerlink" title="重构 neo4j 前端界面实现节点与关系信息修改"></a>重构 neo4j 前端界面实现节点与关系信息修改</h3><p>技术使用:Vue3+Django+neo4j</p>
+        <h3 id="重构-neo4j-前端界面实现节点与关系信息修改"><a href="#重构-neo4j-前端界面实现节点与关系信息修改" class="headerlink" title="重构 neo4j 前端界面实现节点与关系信息修改"></a>重构 neo4j 前端界面实现节点与关系信息修改</h3><ul>
+<li><a href="#%E9%87%8D%E6%9E%84-neo4j-%E5%89%8D%E7%AB%AF%E7%95%8C%E9%9D%A2%E5%AE%9E%E7%8E%B0%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B3%E7%B3%BB%E4%BF%A1%E6%81%AF%E4%BF%AE%E6%94%B9">重构 neo4j 前端界面实现节点与关系信息修改</a><ul>
+<li><a href="#%E5%89%8D%E7%AB%AF%E7%95%8C%E9%9D%A2">前端界面：</a></li>
+<li><a href="#%E5%90%8E%E7%AB%AF%E9%83%A8%E5%88%86">后端部分：</a></li>
+</ul>
+</li>
+</ul>
+<p>技术使用:Vue3+Django+neo4j</p>
         
           <a class="article-more-a" href="/post/b4668f1d.html#more">more >></a>
         
@@ -1093,19 +1143,19 @@
   
     
 
-<article id="post-LeetcCode/leetcode-20240317-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<article id="post-LeetcCode/leetcode-20240317-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/post/1622dcde.html">2024.3.17 日常刷题 (2)</a>
+      <a class="article-title" href="/post/3d0f8f1d.html">2024.3.17 日常刷题 (1)</a>
     </h1>
   
 
         
-        <a href="/post/1622dcde.html" class="archive-article-date">
+        <a href="/post/3d0f8f1d.html" class="archive-article-date">
   	<time datetime="2024-03-17T08:03:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-17</time>
 </a>
         
@@ -1113,9 +1163,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h2>
+        <h2 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h2>
         
-          <a class="article-more-a" href="/post/1622dcde.html#more">more >></a>
+          <a class="article-more-a" href="/post/3d0f8f1d.html#more">more >></a>
         
       
 
@@ -1150,11 +1200,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/栈//" class="article-tag-list-link color2">栈</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/双指针//" class="article-tag-list-link color4">双指针</a>
+        			<a href="/categories/LeetCode/回溯//" class="article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
@@ -1163,7 +1209,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/post/1622dcde.html">展开全文 >></a>
+          <a class="article-more-a" href="/post/3d0f8f1d.html">展开全文 >></a>
         </p>
       
       
@@ -1289,19 +1335,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1321,15 +1367,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
