@@ -6,16 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>Category: JavaScript | 烧鸭工坊</title>
+  <title>知识图谱平台搭建:合并图谱展示请求 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://zengjia121.github.io/categories/%E9%9D%A2%E8%AF%95/JavaScript/index.html">
+  <meta name="description" content="使用封装axios 实现图谱展示请求合并 使用封装axios 实现图谱展示请求合并 需求描述 尝试一：相同请求直接返回promise空对象 尝试二：使用axios CancelToken 阻止相同请求 尝试三：对比不同请求，删除旧请求，发送新请求 其他设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱平台搭建:合并图谱展示请求">
+<meta property="og:url" content="http://zengjia121.github.io/post/3658e610.html">
 <meta property="og:site_name" content="烧鸭工坊">
+<meta property="og:description" content="使用封装axios 实现图谱展示请求合并 使用封装axios 实现图谱展示请求合并 需求描述 尝试一：相同请求直接返回promise空对象 尝试二：使用axios CancelToken 阻止相同请求 尝试三：对比不同请求，删除旧请求，发送新请求 其他设置">
 <meta property="og:locale">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-23-56.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-19-39.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-18-30.png">
+<meta property="article:published_time" content="2024-03-28T11:51:21.000Z">
+<meta property="article:modified_time" content="2024-03-28T13:25:09.134Z">
 <meta property="article:author" content="RoastDuck">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="知识图谱">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-23-56.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -204,78 +214,213 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+
+<article id="post-KG/KG-3" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/bd91be9b.html" class="archive-article-date">
-  	<time datetime="2024-03-24T08:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/bd91be9b.html">JavaScript的事件循环机制</a>
+    <h1 class="article-title" itemprop="name">
+      知识图谱平台搭建:合并图谱展示请求
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/post/3658e610.html" class="archive-article-date">
+  	<time datetime="2024-03-28T11:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用封装axios-实现图谱展示请求合并"><a href="#使用封装axios-实现图谱展示请求合并" class="headerlink" title="使用封装axios 实现图谱展示请求合并"></a>使用封装axios 实现图谱展示请求合并</h2><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85axios-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E8%B0%B1%E5%B1%95%E7%A4%BA%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6">使用封装axios 实现图谱展示请求合并</a><ul>
+<li><a href="#%E9%9C%80%E6%B1%82%E6%8F%8F%E8%BF%B0">需求描述</a></li>
+<li><a href="#%E5%B0%9D%E8%AF%95%E4%B8%80%E7%9B%B8%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9Epromise%E7%A9%BA%E5%AF%B9%E8%B1%A1">尝试一：相同请求直接返回promise空对象</a></li>
+<li><a href="#%E5%B0%9D%E8%AF%95%E4%BA%8C%E4%BD%BF%E7%94%A8axios-canceltoken-%E9%98%BB%E6%AD%A2%E7%9B%B8%E5%90%8C%E8%AF%B7%E6%B1%82">尝试二：使用axios CancelToken 阻止相同请求</a></li>
+<li><a href="#%E5%B0%9D%E8%AF%95%E4%B8%89%E5%AF%B9%E6%AF%94%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E5%88%A0%E9%99%A4%E6%97%A7%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E6%96%B0%E8%AF%B7%E6%B1%82">尝试三：对比不同请求，删除旧请求，发送新请求</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE">其他设置</a><span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><p>之前使用组件实现了，选择不同图谱进行展示，但点击展示没有进行合并，会导致以下两个问题：</p>
+<ol>
+<li>图谱未展示时多次点击按钮会重复调用后端接口</li>
+<li>在图谱未展示时切换其他图谱，请求矛盾，只会显示最后返回数据的图谱</li>
+</ol>
+<p>所以最好的解决方法是在请求相应器里对请求进行合并，具体的合并需求如下：</p>
+<ol>
+<li>连续请求展示相同图谱（具有同样id）的时候，取消新的请求，只发送旧的请求</li>
+<li>请求不同的图谱（具有不同id）的时候，取消旧的请求，发送新的请求</li>
+</ol>
+<h3 id="尝试一：相同请求直接返回promise空对象"><a href="#尝试一：相同请求直接返回promise空对象" class="headerlink" title="尝试一：相同请求直接返回promise空对象"></a>尝试一：相同请求直接返回promise空对象</h3><p>这种方法很简单粗暴，具体步骤：</p>
+<ol>
+<li>设置一个map对象，然后将每个请求在请求时加入，在响应时删除</li>
+<li>将其他请求与map对象中的请求进行比对，要是相同请求，则返回空对象</li>
+</ol>
+<ul>
+<li>代码实现如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 Map 来保存请求和取消令牌</span></span><br><span class="line"><span class="keyword">const</span> pendingRequests = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个请求和取消令牌的key</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">generateReqKey</span>(<span class="params">config: AxiosRequestConfig</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; method, url, params &#125; = config</span><br><span class="line">  <span class="keyword">return</span> [method, url, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(params)].<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (pendingRequests.<span class="title function_">has</span>(requestKey)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Request canceled 1&quot;</span>, requestKey)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这样看起来是解决了多个相同请求连续重复的问题，但其实这样并没有拦截请求，后端接收到的请求仍然是一样多的，而且这样无法区别是否请求为不同图谱，遂放弃<br><img src="/images/blog-2024-03-28-21-23-56.png" alt="后端响应界面"></li>
+</ul>
+<h3 id="尝试二：使用axios-CancelToken-阻止相同请求"><a href="#尝试二：使用axios-CancelToken-阻止相同请求" class="headerlink" title="尝试二：使用axios CancelToken 阻止相同请求"></a>尝试二：使用axios CancelToken 阻止相同请求</h3><p>Axios具有一个取消令牌（CancelToken）机制，用于取消正在进行的 HTTP 请求。<br>一个取消令牌源，包含 token 和 cancel 方法的对象。可以将 token 赋值给请求配置对象的 cancelToken 属性，然后在需要取消请求时，调用 cancel 方法，最后再返回一个空对象回去。<br>这样就可以实现需求一<code>取消新的请求，只发送旧的请求</code>。</p>
+<ul>
+<li>代码实现如下：</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 Map 来保存请求和取消令牌</span></span><br><span class="line"><span class="keyword">const</span> pendingRequests = <span class="keyword">new</span> <span class="title class_">Map</span>&lt;<span class="built_in">string</span>, <span class="title class_">CancelTokenSource</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个请求和取消令牌的key</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">generateReqKey</span>(<span class="params">config: AxiosRequestConfig</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; method, url, params &#125; = config</span><br><span class="line">  <span class="keyword">return</span> [method, url, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(params)].<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//-----响应拦截器代码-----//</span></span><br><span class="line"><span class="comment">// 如果这个请求已经存在，那么取消新的请求</span></span><br><span class="line"><span class="keyword">if</span> (pendingRequests.<span class="title function_">has</span>(requestKey)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Request canceled 1&quot;</span>, requestKey)</span><br><span class="line">  <span class="comment">//创建取消令牌源</span></span><br><span class="line">  <span class="keyword">const</span> source = axios.<span class="property">CancelToken</span>.<span class="title function_">source</span>()</span><br><span class="line">  config.<span class="property">cancelToken</span> = source.<span class="property">token</span></span><br><span class="line">  <span class="comment">//调用cancel取消重复请求</span></span><br><span class="line">  source.<span class="title function_">cancel</span>(<span class="string">&quot;Request is duplicated&quot;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(config)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p><img src="/images/blog-2024-03-28-21-19-39.png" alt="实现截图"></p>
+<h3 id="尝试三：对比不同请求，删除旧请求，发送新请求"><a href="#尝试三：对比不同请求，删除旧请求，发送新请求" class="headerlink" title="尝试三：对比不同请求，删除旧请求，发送新请求"></a>尝试三：对比不同请求，删除旧请求，发送新请求</h3><p>上面已经实现了只发送相同请求的旧请求，而不发送新请求。<br>但针对不同图谱（同个路径不同id）则通过遍历当前请求，比较 请求模式+请求路径 来判断当前是否存在旧请求，如果存在则将旧请求取消</p>
+<ul>
+<li>代码实现如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-----响应拦截器代码-----//</span></span><br><span class="line">  <span class="comment">// 如果这个请求不存在，那么取消之前不同id的旧请求</span></span><br><span class="line">    pendingRequests.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (key.<span class="title function_">startsWith</span>(config.<span class="property">method</span> + (config?.<span class="property">url</span> ?? <span class="string">&quot;&quot;</span>).<span class="title function_">split</span>(<span class="string">&quot;?&quot;</span>)[<span class="number">0</span>])) &#123;</span><br><span class="line">        <span class="comment">// console.log(&quot;Request canceled 2&quot;, key)</span></span><br><span class="line">        value.<span class="title function_">cancel</span>(<span class="string">&quot;Cancel old request with different id&quot;</span>)</span><br><span class="line">        pendingRequests.<span class="title function_">delete</span>(key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加这个请求到 map 中</span></span><br><span class="line">  <span class="keyword">const</span> source = axios.<span class="property">CancelToken</span>.<span class="title function_">source</span>()</span><br><span class="line">  config.<span class="property">cancelToken</span> = source.<span class="property">token</span></span><br><span class="line">  pendingRequests.<span class="title function_">set</span>(requestKey, source)</span><br></pre></td></tr></table></figure>
+<img src="/images/blog-2024-03-28-21-18-30.png" alt="实现截图2"></li>
+</ul>
+<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p>使用axios取消的时候，会在响应拦截器中抛出一个错误，所以要在响应拦截器中添加检查，如果由于请求被取消引起，则返回一个默认的响应</p>
+<ul>
+<li>代码如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">instance</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="variable language_">this</span>.<span class="property">handleResponse</span>, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (axios.<span class="title function_">isCancel</span>(error)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Request was canceled&#x27;</span>, error.<span class="property">message</span>);</span><br><span class="line">    <span class="comment">// 返回一个默认的响应</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123; <span class="attr">data</span>: &#123;&#125; &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 处理其他错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+        
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          RoastDuck
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://zengjia121.github.io/post/3658e610.html" title="知识图谱平台搭建:合并图谱展示请求" target="_blank">http://zengjia121.github.io/post/3658e610.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">知识图谱</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
+        			<a href="/categories/前端开发//" class="article-tag-list-link color5">前端开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        			<a href="/categories/前端开发/平台搭建//" class="article-tag-list-link color5">平台搭建</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      
+
+        <!-- <button>111</button> -->
+        
+<div class="share-btn share-icons tooltip-left">
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
+</div>
+
+<div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/post/555f53d3.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">杂物堆-20240326</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -298,10 +443,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
