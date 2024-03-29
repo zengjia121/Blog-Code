@@ -941,6 +941,7 @@ html {
   border: none;
 }
 .article-entry pre code {
+  /* font-size: 5em; */
   background: none;
   text-shadow: none;
   padding: 0;
