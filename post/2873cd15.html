@@ -6,21 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>跨域及其解决方案 | 烧鸭工坊</title>
+  <title>HTTP-3 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端解决跨域问题 前端解决跨域问题 一、什么是跨域 二、跨域如何解决 三、Vue 中使用 axios 发送跨域请求（含二次封装）">
-<meta property="og:type" content="article">
-<meta property="og:title" content="跨域及其解决方案">
-<meta property="og:url" content="http://zengjia121.github.io/post/1663e6f.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="HTTP-3">
+<meta property="og:url" content="http://zengjia121.github.io/post/2873cd15.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="前端解决跨域问题 前端解决跨域问题 一、什么是跨域 二、跨域如何解决 三、Vue 中使用 axios 发送跨域请求（含二次封装）">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-03-20T13:23:35.000Z">
-<meta property="article:modified_time" content="2024-03-25T03:34:45.448Z">
+<meta property="article:published_time" content="2024-03-29T14:21:07.000Z">
+<meta property="article:modified_time" content="2024-03-29T14:21:07.361Z">
 <meta property="article:author" content="RoastDuck">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
@@ -211,82 +207,27 @@
           <div id="js-content" class="content-ll">
             
 
-<article id="post-HTTP/HTTP-2" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-HTTP-3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      跨域及其解决方案
+      HTTP-3
     </h1>
   
 
         
-        <a href="/post/1663e6f.html" class="archive-article-date">
-  	<time datetime="2024-03-20T13:23:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-20</time>
+        <a href="/post/2873cd15.html" class="archive-article-date">
+  	<time datetime="2024-03-29T14:21:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- @format -->
-
-<h3 id="前端解决跨域问题"><a href="#前端解决跨域问题" class="headerlink" title="前端解决跨域问题"></a>前端解决跨域问题</h3><ul>
-<li><a href="#%E5%89%8D%E7%AB%AF%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98">前端解决跨域问题</a><ul>
-<li><a href="#%E4%B8%80%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F">一、什么是跨域</a></li>
-<li><a href="#%E4%BA%8C%E8%B7%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3">二、跨域如何解决</a></li>
-<li><a href="#%E4%B8%89vue-%E4%B8%AD%E4%BD%BF%E7%94%A8-axios-%E5%8F%91%E9%80%81%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E5%90%AB%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85">三、Vue 中使用 axios 发送跨域请求（含二次封装）</a><span id="more"></span></li>
-</ul>
-</li>
-</ul>
-<h4 id="一、什么是跨域"><a href="#一、什么是跨域" class="headerlink" title="一、什么是跨域"></a>一、什么是跨域</h4><p>跨域本质是<strong>浏览器基于同源策略</strong>的一种安全手段</p>
-<ul>
-<li><h5 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h5><p>一种约定，它是浏览器最核心也最基本的安全功能，同源具有以下三个相同点：</p>
-<ul>
-<li>协议相同</li>
-<li>主机相同</li>
-<li>端口相同</li>
-</ul>
-<p>非同源请求，也就是协议、端口、主机其中一项不相同的时候，这时候就会产生跨域</p>
-<p>同源策略限制了一下行为：</p>
-<ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
-<li>DOM 和 JS 对象无法获取</li>
-<li>Ajax 请求发送不出去</li>
-</ul>
-</li>
-</ul>
-<h4 id="二、跨域如何解决"><a href="#二、跨域如何解决" class="headerlink" title="二、跨域如何解决"></a>二、跨域如何解决</h4><p>在 vue 项目中，主要针对 CORS 或 Proxy 这两种方案进行展开</p>
-<ul>
-<li><h5 id="CORS-（由后端配置-CORS）"><a href="#CORS-（由后端配置-CORS）" class="headerlink" title="CORS （由后端配置 CORS）"></a>CORS （由后端配置 CORS）</h5><p>CORS（Cross-Origin Resource Sharing，跨源资源共享）是一种机制，<strong>它由一系列传输的 HTTP 头组成</strong>，这些 HTTP 头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。只要服务器实现了 CORS 接口，就可以实现跨域通信</p>
-</li>
-<li><h5 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h5><p>代理（Proxy）也称网络代理，是一种特殊的网络服务，允许一个（一般为客户端）通过这个服务与另一个网络终端（一般为服务器）进行非直接的连接。一些网关、路由器等网络设备具备网络代理功能。一般认为代理服务有利于保障网络终端的隐私或安全，防止攻击</p>
-<ul>
-<li>方案一<br>如果是通过 vue-cli 脚手架工具搭建项目，我们可以通过 webpack 为我们起一个本地服务器作为请求的代理对象<br>通过该服务器转发请求至目标服务器，得到结果再转发给前端，但是最终发布上线时如果 web 应用和接口服务器不在一起仍会跨域<br>在<code>vue.config.js</code>中新增以下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  amodule.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">devServer</span>: &#123;</span><br><span class="line">        <span class="attr">host</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="attr">port</span>: <span class="number">8084</span>,</span><br><span class="line">        <span class="attr">open</span>: <span class="literal">true</span>,<span class="comment">// vue项目启动时自动打开浏览器</span></span><br><span class="line">        <span class="attr">proxy</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;/api&#x27;</span>: &#123; <span class="comment">// &#x27;/api&#x27;是代理标识，用于告诉node，url前面是/api的就是使用代理的</span></span><br><span class="line">                <span class="attr">target</span>: <span class="string">&quot;http://xxx.xxx.xx.xx:8080&quot;</span>, <span class="comment">//目标地址，一般是指后台服务器地址</span></span><br><span class="line">                <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">//是否跨域</span></span><br><span class="line">                <span class="attr">pathRewrite</span>: &#123; <span class="comment">// pathRewrite 的作用是把实际Request Url中的&#x27;/api&#x27;用&quot;&quot;代替</span></span><br><span class="line">                    <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>方案二<br> 通过服务端实现代理请求转发，你需要在服务端设置一个代理接口，该接口将客户端的请求转发到目标服务器，然后将目标服务器的响应返回给客户端<br><code>express</code>框架为例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, <span class="title function_">createProxyMiddleware</span>(&#123;</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&#x27;http://example.com&#x27;</span>,  <span class="comment">// 你的后端 API 地址</span></span><br><span class="line">  <span class="attr">changeOrigin</span>: <span class="literal">true</span>,  <span class="comment">// 如果你的后端 API 服务器不支持 CORS，设置这个选项</span></span><br><span class="line">  <span class="attr">pathRewrite</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;&#x27;</span>,  <span class="comment">// 如果你的后端 API 路径不需要 &#x27;/api&#x27; 前缀，设置这个选项</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方案三<br>在 Nginx 中，你可以通过配置反向代理来实现跨域。<br>基本配置示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen <span class="number">80</span>;</span><br><span class="line">  server_name your-domain.<span class="property">com</span>;</span><br><span class="line"></span><br><span class="line">  location /api/ &#123;</span><br><span class="line">      proxy_pass <span class="attr">http</span>:<span class="comment">//example.com;  # 你的后端 API 地址</span></span><br><span class="line">      proxy_set_header <span class="title class_">Host</span> $host;</span><br><span class="line">      proxy_set_header X-<span class="title class_">Real</span>-<span class="variable constant_">IP</span> $remote_addr;</span><br><span class="line">      proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="三、Vue-中使用-axios-发送跨域请求（含二次封装）"><a href="#三、Vue-中使用-axios-发送跨域请求（含二次封装）" class="headerlink" title="三、Vue 中使用 axios 发送跨域请求（含二次封装）"></a>三、Vue 中使用 axios 发送跨域请求（含二次封装）</h4><ul>
-<li>二次封装原因：<ol>
-<li>统一设置请求参数：在 axios 实例中，你可以统一设置请求的 baseURL、headers、timeout 等参数，这样你就不需要在每个请求中单独设置。</li>
-<li>统一处理请求和响应：通过请求和响应拦截器，你可以统一处理所有请求和响应。例如，你可以在请求拦截器中添加 token，或者在响应拦截器中处理错误。</li>
-<li>简化 API 调用：通过封装，你可以将 API 调用简化为一个函数调用，这样可以使代码更简洁，也更易于理解。</li>
-<li>提高可维护性：如果你的 API 调用逻辑分散在各个组件中，那么当 API 变更时，你需要在多个地方修改代码。通过封装，你可以将 API 调用逻辑集中在一处，这样当 API 变更时，你只需要修改一处代码。</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>二次封装示例</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http.js</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&#x27;http://example.com/api&#x27;</span>,  <span class="comment">// 你的 API 基础地址</span></span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span>,  <span class="comment">// 请求超时时间</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求拦截器</span></span><br><span class="line">http.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以设置请求头，比如设置 token</span></span><br><span class="line">    <span class="comment">// config.headers[&#x27;Authorization&#x27;] = &#x27;Bearer &#x27; + token;</span></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截器</span></span><br><span class="line">http.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以对响应数据进行处理</span></span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以对错误进行处理</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> http;</span><br></pre></td></tr></table></figure>
-
+        
       
 
       
@@ -299,7 +240,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://zengjia121.github.io/post/1663e6f.html" title="跨域及其解决方案" target="_blank">http://zengjia121.github.io/post/1663e6f.html</a>
+          <a href="http://zengjia121.github.io/post/2873cd15.html" title="HTTP-3" target="_blank">http://zengjia121.github.io/post/2873cd15.html</a>
         </li>
         
         <li>
@@ -315,37 +256,7 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
       
@@ -392,18 +303,18 @@
   
 <nav id="article-nav">
   
-    <a href="/post/22cbbcfd.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/3955bc30.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2024.3.22 日常刷题
+          Javascript本地存储的方式
         
       </div>
     </a>
   
   
-    <a href="/post/3868d0f3.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTP 和 HTTPS</div>
+    <a href="/post/7478f177.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6中 Promise</div>
       <i class="icon-circle-right"></i>
     </a>
   

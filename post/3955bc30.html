@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>跨域及其解决方案 | 烧鸭工坊</title>
+  <title>Javascript本地存储的方式 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端解决跨域问题 前端解决跨域问题 一、什么是跨域 二、跨域如何解决 三、Vue 中使用 axios 发送跨域请求（含二次封装）">
+  <meta name="description" content="Javascript本地存储的方式 Javascript本地存储的方式 Cookie 特点 常用属性 使用   localStorage 特点 使用   sessionStorage 使用   indexedDB 使用     各缓存方式应用场景 参考  Cookie特点 Cookie，类型为「小型文本文件」，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。 一般不超过 4KB 的小型文本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跨域及其解决方案">
-<meta property="og:url" content="http://zengjia121.github.io/post/1663e6f.html">
+<meta property="og:title" content="Javascript本地存储的方式">
+<meta property="og:url" content="http://zengjia121.github.io/post/3955bc30.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="前端解决跨域问题 前端解决跨域问题 一、什么是跨域 二、跨域如何解决 三、Vue 中使用 axios 发送跨域请求（含二次封装）">
+<meta property="og:description" content="Javascript本地存储的方式 Javascript本地存储的方式 Cookie 特点 常用属性 使用   localStorage 特点 使用   sessionStorage 使用   indexedDB 使用     各缓存方式应用场景 参考  Cookie特点 Cookie，类型为「小型文本文件」，指某些网站为了辨别用户身份而储存在用户本地终端上的数据。 一般不超过 4KB 的小型文本">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-03-20T13:23:35.000Z">
-<meta property="article:modified_time" content="2024-03-25T03:34:45.448Z">
+<meta property="article:published_time" content="2024-03-29T14:26:25.000Z">
+<meta property="article:modified_time" content="2024-03-29T15:11:03.812Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="面试">
-<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
@@ -211,81 +211,137 @@
           <div id="js-content" class="content-ll">
             
 
-<article id="post-HTTP/HTTP-2" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-JavaScriptAndTypeScript/JavaScript-2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      跨域及其解决方案
+      Javascript本地存储的方式
     </h1>
   
 
         
-        <a href="/post/1663e6f.html" class="archive-article-date">
-  	<time datetime="2024-03-20T13:23:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-20</time>
+        <a href="/post/3955bc30.html" class="archive-article-date">
+  	<time datetime="2024-03-29T14:26:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- @format -->
-
-<h3 id="前端解决跨域问题"><a href="#前端解决跨域问题" class="headerlink" title="前端解决跨域问题"></a>前端解决跨域问题</h3><ul>
-<li><a href="#%E5%89%8D%E7%AB%AF%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98">前端解决跨域问题</a><ul>
-<li><a href="#%E4%B8%80%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F">一、什么是跨域</a></li>
-<li><a href="#%E4%BA%8C%E8%B7%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3">二、跨域如何解决</a></li>
-<li><a href="#%E4%B8%89vue-%E4%B8%AD%E4%BD%BF%E7%94%A8-axios-%E5%8F%91%E9%80%81%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E5%90%AB%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85">三、Vue 中使用 axios 发送跨域请求（含二次封装）</a><span id="more"></span></li>
+        <h3 id="Javascript本地存储的方式"><a href="#Javascript本地存储的方式" class="headerlink" title="Javascript本地存储的方式"></a>Javascript本地存储的方式</h3><ul>
+<li><a href="#javascript%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E7%9A%84%E6%96%B9%E5%BC%8F">Javascript本地存储的方式</a><ul>
+<li><a href="#cookie">Cookie</a><ul>
+<li><a href="#%E7%89%B9%E7%82%B9">特点</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">常用属性</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ul>
+</li>
+<li><a href="#localstorage">localStorage</a><ul>
+<li><a href="#%E7%89%B9%E7%82%B9-1">特点</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-1">使用</a></li>
+</ul>
+</li>
+<li><a href="#sessionstorage">sessionStorage</a><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-2">使用</a></li>
+</ul>
+</li>
+<li><a href="#indexeddb">indexedDB</a><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-3">使用</a></li>
 </ul>
 </li>
 </ul>
-<h4 id="一、什么是跨域"><a href="#一、什么是跨域" class="headerlink" title="一、什么是跨域"></a>一、什么是跨域</h4><p>跨域本质是<strong>浏览器基于同源策略</strong>的一种安全手段</p>
-<ul>
-<li><h5 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h5><p>一种约定，它是浏览器最核心也最基本的安全功能，同源具有以下三个相同点：</p>
-<ul>
-<li>协议相同</li>
-<li>主机相同</li>
-<li>端口相同</li>
+</li>
+<li><a href="#%E5%90%84%E7%BC%93%E5%AD%98%E6%96%B9%E5%BC%8F%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">各缓存方式应用场景</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
-<p>非同源请求，也就是协议、端口、主机其中一项不相同的时候，这时候就会产生跨域</p>
-<p>同源策略限制了一下行为：</p>
-<ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
-<li>DOM 和 JS 对象无法获取</li>
-<li>Ajax 请求发送不出去</li>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li><code>Cookie</code>，类型为「小型文本文件」，指某些网站为了<strong>辨别用户身份</strong>而储存在<strong>用户本地终端上的数据</strong>。</li>
+<li>一般<strong>不超过 4KB 的小型文本数据</strong>，它由一个名称（Name）、一个值（Value）和其它几个用于控制 cookie有效期、安全性、使用范围的可选属性组成</li>
+<li><code>Cookie</code>是为了解决 HTTP 协议无状态性导致的问题而设计的。HTTP 协议是无状态的，意味着服务器无法从一个请求知道用户在上一个请求中做了什么。Cookie 可以<strong>帮助服务器记住用户的状态</strong>，例如用户的登录状态、购物车中的商品等</li>
+<li><code>Cookie</code> 在每次 HTTP 请求时都会被发送到服务器，所以如果使用过多的 <code>Cookie</code>可能会影响网站的性能。最后，<code>Cookie</code>也可能引发隐私问题，因为它们可以被用来跟踪用户的浏览行为。</li>
 </ul>
+<h5 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h5><ul>
+<li><code>Expires</code> 用于设置 <code>Cookie</code> 的过期时间  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Expires</span>=<span class="title class_">Wed</span>, <span class="number">21</span> <span class="title class_">Oct</span> <span class="number">2015</span> <span class="number">07</span>:<span class="number">28</span>:<span class="number">00</span> <span class="variable constant_">GMT</span></span><br></pre></td></tr></table></figure></li>
+<li><code>Max-Age</code> 用于设置在 <code>Cookie</code> 失效之前需要经过的秒数（优先级比Expires高）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Max</span>-<span class="title class_">Age</span>=<span class="number">604800</span></span><br></pre></td></tr></table></figure></li>
+<li><code>Domain</code>指定了 <code>Cookie</code> 可以送达的主机名</li>
+<li>Path指定了一个 URL路径，这个路径必须出现在要请求的资源的路径中才可以发送<code>Cookie</code>首部<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Path</span>=<span class="regexp">/docs   /</span><span class="regexp">/请求/</span>docs/<span class="title class_">Web</span>/ 下的资源会带 <span class="title class_">Cookie</span> 首部</span><br></pre></td></tr></table></figure></li>
+<li>标记为 <code>Secure</code>的 <code>Cookie</code>只应通过被HTTPS协议加密过的请求发送给服务端<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> = <span class="string">&quot;username=John Doe; Secure&quot;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><ul>
+<li><p>设置<code>Cookie</code><br>创建一个名为 “username” 的 <code>Cookie</code>，其值为 <code>&quot;John Doe&quot;</code>，过期时间为 <code>&quot;Thu, 18 Dec 2023 12:00:00 UTC&quot;</code>，并且这个 <code>Cookie</code> 在整个网站下都是可用的（由 path&#x3D;&#x2F; 指定）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> = <span class="string">&quot;username=John Doe; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取<code>Cookie</code><br><code>document.cookie</code> 属性会返回所有的 <code>Cookie</code>，每个<code>Cookie</code>之间用分号和空格分隔。如果你想要读取特定的 <code>Cookie</code>，需要对<code>document.cookie</code> 返回的字符串进行解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> allCookies = <span class="variable language_">document</span>.<span class="property">cookie</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>Cookie</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> oldCookie = <span class="title function_">getCookie</span>(<span class="string">&quot;username&quot;</span>); <span class="comment">// 假设 getCookie 是一个可以获取 Cookie 值的函数</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> = <span class="string">&quot;username=&quot;</span> + oldCookie + <span class="string">&quot;; expires=Fri, 19 Dec 2023 12:00:00 UTC; path=/&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除<code>Cookie</code><br>最常用的方法就是给<code>Cookie</code>设置一个过期的事件，这样<code>Cookie</code>过期后会被浏览器删除</p>
 </li>
 </ul>
-<h4 id="二、跨域如何解决"><a href="#二、跨域如何解决" class="headerlink" title="二、跨域如何解决"></a>二、跨域如何解决</h4><p>在 vue 项目中，主要针对 CORS 或 Proxy 这两种方案进行展开</p>
+<h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p>在客户端存储数据的方式，常常被用在以下场景中：</p>
 <ul>
-<li><h5 id="CORS-（由后端配置-CORS）"><a href="#CORS-（由后端配置-CORS）" class="headerlink" title="CORS （由后端配置 CORS）"></a>CORS （由后端配置 CORS）</h5><p>CORS（Cross-Origin Resource Sharing，跨源资源共享）是一种机制，<strong>它由一系列传输的 HTTP 头组成</strong>，这些 HTTP 头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应。只要服务器实现了 CORS 接口，就可以实现跨域通信</p>
-</li>
-<li><h5 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h5><p>代理（Proxy）也称网络代理，是一种特殊的网络服务，允许一个（一般为客户端）通过这个服务与另一个网络终端（一般为服务器）进行非直接的连接。一些网关、路由器等网络设备具备网络代理功能。一般认为代理服务有利于保障网络终端的隐私或安全，防止攻击</p>
+<li><strong>保存用户的偏好设置</strong>：例如，用户的主题选择（深色模式或浅色模式）、语言选择等。</li>
+<li><strong>保存用户的会话信息</strong>：例如，用户的登录状态、购物车中的商品等。这样即使用户关闭了浏览器，再次打开时也能恢复他们的会话。</li>
+<li><strong>缓存数据</strong>：如果你的应用需要频繁地从服务器获取数据，你可以将这些数据缓存到 localStorage 中，以减少服务器的负载和提高应用的响应速度。</li>
+<li><strong>保存应用的状态</strong>：对于一些复杂的单页应用（SPA），你可以将应用的状态保存到 localStorage 中，这样即使用户刷新了页面，应用也能恢复到之前的状态。</li>
+<li><strong>离线应用</strong>：对于一些可以离线使用的应用，将应用的数据保存到 localStorage 中，这样即使在没有网络连接的情况下，用户也能使用应用。</li>
+</ul>
+<h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>生命周期：持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的</li>
+<li>存储的信息在同一域中是共享的</li>
+<li>当本页操作（新增、修改、删除）了localStorage的时候，本页面不会触发storage事件,但是别的页面会触发storage事件。</li>
+<li>大小：5M（跟浏览器厂商有关系）</li>
+<li>localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡</li>
+<li>受同源策略的限制  </li>
+<li>无法像Cookie一样设置过期时间</li>
+<li>只能存入字符串，无法直接存对象</li>
+</ul>
+<h5 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h5><p>注：<code>localStorage</code> <strong>只能存储字符串</strong>。如果你想要存储对象，你需要先将对象转换为 JSON 字符串，然后再存储。   </p>
 <ul>
-<li>方案一<br>如果是通过 vue-cli 脚手架工具搭建项目，我们可以通过 webpack 为我们起一个本地服务器作为请求的代理对象<br>通过该服务器转发请求至目标服务器，得到结果再转发给前端，但是最终发布上线时如果 web 应用和接口服务器不在一起仍会跨域<br>在<code>vue.config.js</code>中新增以下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  amodule.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">devServer</span>: &#123;</span><br><span class="line">        <span class="attr">host</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="attr">port</span>: <span class="number">8084</span>,</span><br><span class="line">        <span class="attr">open</span>: <span class="literal">true</span>,<span class="comment">// vue项目启动时自动打开浏览器</span></span><br><span class="line">        <span class="attr">proxy</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;/api&#x27;</span>: &#123; <span class="comment">// &#x27;/api&#x27;是代理标识，用于告诉node，url前面是/api的就是使用代理的</span></span><br><span class="line">                <span class="attr">target</span>: <span class="string">&quot;http://xxx.xxx.xx.xx:8080&quot;</span>, <span class="comment">//目标地址，一般是指后台服务器地址</span></span><br><span class="line">                <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">//是否跨域</span></span><br><span class="line">                <span class="attr">pathRewrite</span>: &#123; <span class="comment">// pathRewrite 的作用是把实际Request Url中的&#x27;/api&#x27;用&quot;&quot;代替</span></span><br><span class="line">                    <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>设置数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;myKey&#x27;</span>, <span class="string">&#x27;myValue&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>获取数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;myKey&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>删除数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;myKey&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>清除所有数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">clear</span>();</span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p>方案二<br> 通过服务端实现代理请求转发，你需要在服务端设置一个代理接口，该接口将客户端的请求转发到目标服务器，然后将目标服务器的响应返回给客户端<br><code>express</code>框架为例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, <span class="title function_">createProxyMiddleware</span>(&#123;</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&#x27;http://example.com&#x27;</span>,  <span class="comment">// 你的后端 API 地址</span></span><br><span class="line">  <span class="attr">changeOrigin</span>: <span class="literal">true</span>,  <span class="comment">// 如果你的后端 API 服务器不支持 CORS，设置这个选项</span></span><br><span class="line">  <span class="attr">pathRewrite</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;&#x27;</span>,  <span class="comment">// 如果你的后端 API 路径不需要 &#x27;/api&#x27; 前缀，设置这个选项</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方案三<br>在 Nginx 中，你可以通过配置反向代理来实现跨域。<br>基本配置示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen <span class="number">80</span>;</span><br><span class="line">  server_name your-domain.<span class="property">com</span>;</span><br><span class="line"></span><br><span class="line">  location /api/ &#123;</span><br><span class="line">      proxy_pass <span class="attr">http</span>:<span class="comment">//example.com;  # 你的后端 API 地址</span></span><br><span class="line">      proxy_set_header <span class="title class_">Host</span> $host;</span><br><span class="line">      proxy_set_header X-<span class="title class_">Real</span>-<span class="variable constant_">IP</span> $remote_addr;</span><br><span class="line">      proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p><code>sessionStorage</code>和 <code>localStorage</code>使用方法基本一致，唯一不同的是生命周期，<strong>一旦页面（会话）关闭，<code>sessionStorage</code> 将会删除数据</strong></p>
+<h5 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h5><p>使用示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>, <span class="attr">age</span>: <span class="number">30</span>&#125;;</span><br><span class="line"><span class="variable language_">sessionStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;myObj&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj));</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">sessionStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;myObj&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">name</span>); <span class="comment">// 输出 &quot;John&quot;</span></span><br></pre></td></tr></table></figure>
+<p>注：<code>sessionStorage</code> <strong>只能存储字符串</strong>。如果你想要存储对象，你需要先将对象转换为 JSON 字符串，然后再存储。   </p>
+<ul>
+<li>设置数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">sessionStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;myKey&#x27;</span>, <span class="string">&#x27;myValue&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>获取数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = <span class="variable language_">sessionStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;myKey&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>删除数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">sessionStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;myKey&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>清除所有数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">sessionStorage</span>.<span class="title function_">clear</span>();</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="三、Vue-中使用-axios-发送跨域请求（含二次封装）"><a href="#三、Vue-中使用-axios-发送跨域请求（含二次封装）" class="headerlink" title="三、Vue 中使用 axios 发送跨域请求（含二次封装）"></a>三、Vue 中使用 axios 发送跨域请求（含二次封装）</h4><ul>
-<li>二次封装原因：<ol>
-<li>统一设置请求参数：在 axios 实例中，你可以统一设置请求的 baseURL、headers、timeout 等参数，这样你就不需要在每个请求中单独设置。</li>
-<li>统一处理请求和响应：通过请求和响应拦截器，你可以统一处理所有请求和响应。例如，你可以在请求拦截器中添加 token，或者在响应拦截器中处理错误。</li>
-<li>简化 API 调用：通过封装，你可以将 API 调用简化为一个函数调用，这样可以使代码更简洁，也更易于理解。</li>
-<li>提高可维护性：如果你的 API 调用逻辑分散在各个组件中，那么当 API 变更时，你需要在多个地方修改代码。通过封装，你可以将 API 调用逻辑集中在一处，这样当 API 变更时，你只需要修改一处代码。</li>
+<h4 id="indexedDB"><a href="#indexedDB" class="headerlink" title="indexedDB"></a>indexedDB</h4><p><code>indexedDB</code> 是一个在浏览器中存储大量结构化数据的低级 API。<code>indexedDB</code> 提供了对事务的完全控制，可以存储和检索 <code>JavaScript</code> 对象，这些对象由索引组织，使得高性能搜索成为可能。</p>
+<h5 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h5><ul>
+<li><p>打开数据库</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> openRequest = indexedDB.<span class="title function_">open</span>(<span class="string">&quot;myDatabase&quot;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建对象存储</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">openRequest.<span class="property">onupgradeneeded</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> db = e.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">  <span class="keyword">if</span> (!db.<span class="property">objectStoreNames</span>.<span class="title function_">contains</span>(<span class="string">&#x27;myStore&#x27;</span>)) &#123;</span><br><span class="line">      db.<span class="title function_">createObjectStore</span>(<span class="string">&#x27;myStore&#x27;</span>, &#123;<span class="attr">keyPath</span>: <span class="string">&#x27;id&#x27;</span>&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;myStore&quot;</span>, <span class="string">&quot;readwrite&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> store = transaction.<span class="title function_">objectStore</span>(<span class="string">&quot;myStore&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> item = &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>, <span class="attr">age</span>: <span class="number">30</span>&#125;;</span><br><span class="line">store.<span class="title function_">add</span>(item);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;myStore&quot;</span>, <span class="string">&quot;readonly&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> store = transaction.<span class="title function_">objectStore</span>(<span class="string">&quot;myStore&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> request = store.<span class="title function_">get</span>(<span class="number">1</span>);</span><br><span class="line">request.<span class="property">onsuccess</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> item = e.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">name</span>); <span class="comment">// 输出 &quot;John&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;myStore&quot;</span>, <span class="string">&quot;readwrite&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> store = transaction.<span class="title function_">objectStore</span>(<span class="string">&quot;myStore&quot;</span>);</span><br><span class="line">store.<span class="title function_">delete</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="各缓存方式应用场景"><a href="#各缓存方式应用场景" class="headerlink" title="各缓存方式应用场景"></a>各缓存方式应用场景</h3><ol>
+<li>标记用户与跟踪用户行为的情况，推荐使用cookie</li>
+<li>适合长期保存在本地的数据（令牌），推荐使用localStorage</li>
+<li>敏感账号一次性登录，推荐使用sessionStorage</li>
+<li>存储大量数据的情况、在线文档（富文本编辑器）保存编辑历史的情况，推荐使用indexedDB</li>
 </ol>
-</li>
-</ul>
-<ul>
-<li>二次封装示例</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http.js</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&#x27;http://example.com/api&#x27;</span>,  <span class="comment">// 你的 API 基础地址</span></span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span>,  <span class="comment">// 请求超时时间</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求拦截器</span></span><br><span class="line">http.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以设置请求头，比如设置 token</span></span><br><span class="line">    <span class="comment">// config.headers[&#x27;Authorization&#x27;] = &#x27;Bearer &#x27; + token;</span></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截器</span></span><br><span class="line">http.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以对响应数据进行处理</span></span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里你可以对错误进行处理</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> http;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>  <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/mROjtpoXarN--UDfEMqwhQ">https://mp.weixin.qq.com/s/mROjtpoXarN--UDfEMqwhQ</a><br>  <a target="_blank" rel="noopener" href="https://github.com/chenstarx/GoDB.js">https://github.com/chenstarx/GoDB.js</a></p>
 
       
 
@@ -299,7 +355,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://zengjia121.github.io/post/1663e6f.html" title="跨域及其解决方案" target="_blank">http://zengjia121.github.io/post/1663e6f.html</a>
+          <a href="http://zengjia121.github.io/post/3955bc30.html" title="Javascript本地存储的方式" target="_blank">http://zengjia121.github.io/post/3955bc30.html</a>
         </li>
         
         <li>
@@ -324,7 +380,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -340,7 +396,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
+        			<a href="/categories/面试/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -392,18 +448,9 @@
   
 <nav id="article-nav">
   
-    <a href="/post/22cbbcfd.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          2024.3.22 日常刷题
-        
-      </div>
-    </a>
   
-  
-    <a href="/post/3868d0f3.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTP 和 HTTPS</div>
+    <a href="/post/2873cd15.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP-3</div>
       <i class="icon-circle-right"></i>
     </a>
   
