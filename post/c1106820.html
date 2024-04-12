@@ -6,24 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>2024.3.17 日常刷题 (1) | 烧鸭工坊</title>
+  <title>TCP的三次握手和四次挥手 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="组合总和">
+  <meta name="description" content="TCP的三次握手和四次挥手 TCP的三次握手和四次挥手 三次握手 具体过程 为什么不是两次握手   四次挥手 具体过程   四次挥手原因">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2024.3.17 日常刷题 (1)">
-<meta property="og:url" content="http://zengjia121.github.io/post/3d0f8f1d.html">
+<meta property="og:title" content="TCP的三次握手和四次挥手">
+<meta property="og:url" content="http://zengjia121.github.io/post/c1106820.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="组合总和">
+<meta property="og:description" content="TCP的三次握手和四次挥手 TCP的三次握手和四次挥手 三次握手 具体过程 为什么不是两次握手   四次挥手 具体过程   四次挥手原因">
 <meta property="og:locale">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-17-16-16-42.png">
-<meta property="article:published_time" content="2024-03-17T08:03:30.000Z">
-<meta property="article:modified_time" content="2024-03-17T13:52:53.127Z">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-32-05.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-43-59.png">
+<meta property="article:published_time" content="2024-04-11T14:10:29.000Z">
+<meta property="article:modified_time" content="2024-04-12T03:46:06.972Z">
 <meta property="article:author" content="RoastDuck">
-<meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="日常刷题">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-03-17-16-16-42.png">
+<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-32-05.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -213,44 +214,68 @@
           <div id="js-content" class="content-ll">
             
 
-<article id="post-LeetcCode/leetcode-20240317-1" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-HTTP/HTTP-5" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2024.3.17 日常刷题 (1)
+      TCP的三次握手和四次挥手
     </h1>
   
 
         
-        <a href="/post/3d0f8f1d.html" class="archive-article-date">
-  	<time datetime="2024-03-17T08:03:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-17</time>
+        <a href="/post/c1106820.html" class="archive-article-date">
+  	<time datetime="2024-04-11T14:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h2><span id="more"></span>
-
-<h3 id="题目详情"><a href="#题目详情" class="headerlink" title="题目详情"></a>题目详情</h3><p><img src="/images/blog-2024-03-17-16-16-42.png" alt="组合总和题目详情"></p>
-<h3 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h3><p>想的是和求三数之和一样，不断拆分问题，然后使用递归解决<br>即将目标值变为 target-当前数 然后当 总和等于 target 的时候返回,小于 target 的时候继续递归,大于则跳过（不做处理</p>
-<ul>
-<li>Python 实现</li>
+        <h3 id="TCP的三次握手和四次挥手"><a href="#TCP的三次握手和四次挥手" class="headerlink" title="TCP的三次握手和四次挥手"></a>TCP的三次握手和四次挥手</h3><ul>
+<li><a href="#tcp%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B">TCP的三次握手和四次挥手</a><ul>
+<li><a href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">三次握手</a><ul>
+<li><a href="#%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B">具体过程</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B">为什么不是两次握手</a></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum</span>(<span class="params">self, candidates: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(candidates):</span><br><span class="line">            <span class="keyword">if</span> num == target:</span><br><span class="line">                res.append([num])</span><br><span class="line">            <span class="keyword">elif</span> num &lt; target:</span><br><span class="line">              <span class="comment">#如果当前总和小于target,从当前数字后面查找组合,防止出现重复组合</span></span><br><span class="line">                <span class="keyword">for</span> r <span class="keyword">in</span> self.combinationSum(candidates[i:],target-num):</span><br><span class="line">                    res.append([num]+r)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>TypeScript 实现</li>
+</li>
+<li><a href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B">四次挥手</a><ul>
+<li><a href="#%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B-1">具体过程</a></li>
 </ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">combinationSum</span>(<span class="params">candidates: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="built_in">number</span>[][] &#123;</span><br><span class="line">  <span class="keyword">if</span> (candidates.<span class="property">length</span> === <span class="number">0</span>) <span class="keyword">return</span> [];</span><br><span class="line">  <span class="keyword">const</span> <span class="attr">res</span>: <span class="built_in">number</span>[][] = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; candidates.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (candidates[i] === target) &#123;</span><br><span class="line">      res.<span class="title function_">push</span>([candidates[i]]);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (candidates[i] &lt; target) &#123;</span><br><span class="line">      <span class="keyword">const</span> subRes = <span class="title function_">combinationSum</span>(candidates.<span class="title function_">slice</span>(i), target - candidates[i]);</span><br><span class="line">      subRes.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> res.<span class="title function_">push</span>([candidates[i], ...item]));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>TypeScript 另一种实现<br>加入了剪枝的部分，提升了运行速度</li>
+</li>
+<li><a href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%8E%9F%E5%9B%A0">四次挥手原因</a></li>
 </ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">combinationSum</span>(<span class="params">candidates: <span class="built_in">number</span>[], target: <span class="built_in">number</span></span>): <span class="built_in">number</span>[][] &#123;</span><br><span class="line">  <span class="comment">// 排序</span></span><br><span class="line">  candidates.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">  <span class="keyword">let</span> res = []; <span class="comment">// 结果集</span></span><br><span class="line">  <span class="keyword">let</span> step = []; <span class="comment">// 过程记录</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 深度优先搜索遍历</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">dfs</span> = (<span class="params">index, target</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">      res.<span class="title function_">push</span>(<span class="title class_">Array</span>.<span class="title function_">from</span>(step)); <span class="comment">// 记录结果（直接添加 step 为浅拷贝，其结果会随 step 的变化而变化）</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = index; i &lt; candidates.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> tmp = target - candidates[i];</span><br><span class="line">      <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>) <span class="keyword">return</span>; <span class="comment">// 剪枝</span></span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        step.<span class="title function_">push</span>(candidates[i]); <span class="comment">// 记录当前步骤</span></span><br><span class="line">        <span class="title function_">dfs</span>(i, tmp); <span class="comment">// 递归遍历</span></span><br><span class="line">        step.<span class="title function_">pop</span>(); <span class="comment">// 移除当前步骤</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">dfs</span>(<span class="number">0</span>, target);</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<span id="more"></span>
+
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p>三次握手（Three-way Handshake）其实就是指建立一个TCP连接时，需要客户端和服务器总共发送3个包<br><strong>主要作用</strong>：确认双方的接收能力和发送能力是否正常、指定自己的初始化序列号为后面的可靠性传送做准备</p>
+<h5 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h5><ul>
+<li><p><strong>第一次握手</strong>：客户端给服务端发一个 <code>SYN</code> 报文，并指明客户端的初始化序列号 <code>ISN(c)</code>，此时客户端处于 <code>SYN_SENT</code> 状态<br><strong>握手作用</strong>：客户端发送网络包，服务端收到了 这样服务端就能得出结论：客户端的发送能力、服务端的接收能力是正常的。</p>
+</li>
+<li><p><strong>第二次握手</strong>: 服务器收到客户端的 <code>SYN</code> 报文之后，会以自己的 <code>SYN</code> 报文作为应答，为了确认客户端的 <code>SYN</code>，将客户端的 <code>ISN+1</code> 作为 <code>ACK</code> 的值，此时服务器处于 <code>SYN_RCVD</code> 的状态<br><strong>握手作用</strong>：服务端发包，客户端收到了。客户端能得出结论：服务端的接收、发送能力，客户端的接收、发送能力是正常的。不过此时服务器并不能确认客户端的接收能力是否正常</p>
+</li>
+<li><p><strong>第三次握手</strong>：客户端收到 <code>SYN</code> 报文之后，会发送一个 <code>ACK</code> 报文，值为服务器的<code>ISN+1</code>。此时客户端处于 <code>ESTABLISHED</code> 状态。服务器收到 <code>ACK</code> 报文之后，也处于 <code>ESTABLISHED</code> 状态，此时，双方已建立起了连接<br><strong>握手作用</strong>：客户端发包，服务端收到了。 这样服务端就能得出结论：客户端的接收、发送能力正常，服务器自己的发送、接收能力也正常</p>
+<p><img src="/images/blog-2024-04-12-11-32-05.png" alt="三次握手图示"></p>
+</li>
+</ul>
+<h5 id="为什么不是两次握手"><a href="#为什么不是两次握手" class="headerlink" title="为什么不是两次握手"></a>为什么不是两次握手</h5><p>如果是两次握手，发送端可以确定自己发送的信息能对方能收到，也能确定对方发的包自己能收到，但接收端只能确定对方发的包自己能收到 无法确定自己发的包对方能收到</p>
+<p>并且两次握手的话, 客户端有可能因为网络阻塞等原因会发送多个请求报文，延时到达的请求又会与服务器建立连接，浪费掉许多服务器的资源</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p><code>tcp</code>终止一个连接，需要经过四次挥手</p>
+<h5 id="具体过程-1"><a href="#具体过程-1" class="headerlink" title="具体过程"></a>具体过程</h5><ul>
+<li><p><strong>第一次挥手</strong>：客户端发送一个 <code>FIN</code> 报文，报文中会指定一个序列号。此时客户端处于 <code>FIN_WAIT1</code> 状态，停止发送数据，等待服务端的确认</p>
+</li>
+<li><p><strong>第二次挥手</strong>：服务端收到 <code>FIN</code> 之后，会发送 <code>ACK</code> 报文，且把客户端的序列号值 +1 作为 <code>ACK</code> 报文的序列号值，表明已经收到客户端的报文了，此时服务端处于<code>CLOSE_WAIT</code>状态</p>
+</li>
+<li><p><strong>第三次挥手</strong>：如果服务端也想断开连接了，和客户端的第一次挥手一样，发给 <code>FIN</code> 报文，且指定一个序列号。此时服务端处于<code>LAST_ACK</code> 的状态</p>
+</li>
+<li><p><strong>第四次挥手</strong>：客户端收到 <code>FIN</code> 之后，一样发送一个 <code>ACK</code> 报文作为应答，且把服务端的序列号值 +1 作为自己 <code>ACK</code> 报文的序列号值，此时客户端处于 <code>TIME_WAIT</code>态。需要过一阵子以确保服务端收到自己的 <code>ACK</code> 报文之后才会进入 <code>CLOSED</code> 状态，服务端收到 <code>ACK</code> 报文之后，就处于关闭连接了，处于 <code>CLOSED</code> 状态   </p>
+<p><img src="/images/blog-2024-04-12-11-43-59.png" alt="四次挥手图示"></p>
+</li>
+</ul>
+<h4 id="四次挥手原因"><a href="#四次挥手原因" class="headerlink" title="四次挥手原因"></a>四次挥手原因</h4><p>服务端在收到客户端断开连接<code>Fin</code>报文后，并不会立即关闭连接，而是先发送一个<code>ACK</code>包先告诉客户端收到关闭连接的请求，只有当服务器的所有报文发送完毕之后，才发送<code>FIN</code>报文断开连接，因此需要四次挥手</p>
 
       
 
@@ -264,7 +289,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://zengjia121.github.io/post/3d0f8f1d.html" title="2024.3.17 日常刷题 (1)" target="_blank">http://zengjia121.github.io/post/3d0f8f1d.html</a>
+          <a href="http://zengjia121.github.io/post/c1106820.html" title="TCP的三次握手和四次挥手" target="_blank">http://zengjia121.github.io/post/c1106820.html</a>
         </li>
         
         <li>
@@ -285,11 +310,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常刷题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
         		</li>
       		
 		</ul>
@@ -301,11 +326,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode//" class="article-tag-list-link color4">LeetCode</a>
+        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/回溯//" class="article-tag-list-link color3">回溯</a>
+        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
         		</li>
       		
 		</ul>
@@ -357,18 +382,18 @@
   
 <nav id="article-nav">
   
-    <a href="/post/b4668f1d.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/95a0a801.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          知识图谱平台搭建:实现节点与关系信息修改
+          leetcode-20240411
         
       </div>
     </a>
   
   
-    <a href="/post/1622dcde.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2024.3.17 日常刷题 (2)</div>
+    <a href="/post/5e956d24.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript原型与原型链</div>
       <i class="icon-circle-right"></i>
     </a>
   

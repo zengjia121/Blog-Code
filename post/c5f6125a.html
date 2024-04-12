@@ -17,7 +17,7 @@
 <meta property="og:description" content="HTTP状态码 HTTP状态码 状态码类型 状态码详解 1xx 2xx 3xx 4xx 5xx">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-04-08T13:54:59.000Z">
-<meta property="article:modified_time" content="2024-04-08T14:10:14.710Z">
+<meta property="article:modified_time" content="2024-04-12T04:01:21.642Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="HTTP">
@@ -239,12 +239,13 @@
 <li><a href="#2xx">2xx</a></li>
 <li><a href="#3xx">3xx</a></li>
 <li><a href="#4xx">4xx</a></li>
-<li><a href="#5xx">5xx</a><span id="more"></span></li>
+<li><a href="#5xx">5xx</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<span id="more"></span>
 <h4 id="状态码类型"><a href="#状态码类型" class="headerlink" title="状态码类型"></a>状态码类型</h4><table>
 <thead>
 <tr>
@@ -294,7 +295,7 @@
 <p><strong>307：</strong>（临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
 <p><strong>308：</strong>（永久转移）这个请求和以后的请求都应该被另一个URI地址重新发送。307、308和302、301有相同的表现，但是不允许HTTP方法改变。例如，请求表单到一个永久转移的资源将会继续顺利地执行。</p>
 <h5 id="4xx"><a href="#4xx" class="headerlink" title="4xx"></a>4xx</h5><p>**400:**（错误请求) 服务器不理解请求的语法。</p>
-<p><strong>401：</strong>(未授权) 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p>
+<p><strong>401：</strong> (未授权) 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p>
 <p><strong>402：</strong>该状态码是为了将来可能的需求而预留的。</p>
 <p><strong>403：</strong>（禁止) 服务器拒绝请求。</p>
 <p><strong>404：</strong>（未找到) 服务器找不到请求的网页。</p>
@@ -458,6 +459,15 @@
   
 <nav id="article-nav">
   
+    <a href="/post/5e956d24.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaScript原型与原型链
+        
+      </div>
+    </a>
+  
   
     <a href="/post/7591b14f.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">position 布局</div>
@@ -586,6 +596,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">插件使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">amap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -602,23 +624,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">插件使用</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">amap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,19 +632,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,11 +644,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔试</a>
+                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -662,10 +672,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">深度优先搜索</a>
               </li>
              
@@ -674,11 +680,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
