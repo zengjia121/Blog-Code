@@ -6,25 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>TCP的三次握手和四次挥手 | 烧鸭工坊</title>
+  <title>HTTP-6 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="TCP的三次握手和四次挥手 TCP的三次握手和四次挥手 三次握手 具体过程 为什么不是两次握手   四次挥手 具体过程   四次挥手原因">
-<meta property="og:type" content="article">
-<meta property="og:title" content="TCP的三次握手和四次挥手">
-<meta property="og:url" content="http://zengjia121.github.io/post/c1106820.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="HTTP-6">
+<meta property="og:url" content="http://zengjia121.github.io/post/5819399a.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="TCP的三次握手和四次挥手 TCP的三次握手和四次挥手 三次握手 具体过程 为什么不是两次握手   四次挥手 具体过程   四次挥手原因">
 <meta property="og:locale">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-32-05.png">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-43-59.png">
-<meta property="article:published_time" content="2024-04-11T14:10:29.000Z">
-<meta property="article:modified_time" content="2024-04-12T03:46:06.972Z">
+<meta property="article:published_time" content="2024-04-13T08:01:44.000Z">
+<meta property="article:modified_time" content="2024-04-13T08:01:44.926Z">
 <meta property="article:author" content="RoastDuck">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-04-12-11-32-05.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -214,69 +207,27 @@
           <div id="js-content" class="content-ll">
             
 
-<article id="post-HTTP/HTTP-5" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-HTTP-6" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      TCP的三次握手和四次挥手
+      HTTP-6
     </h1>
   
 
         
-        <a href="/post/c1106820.html" class="archive-article-date">
-  	<time datetime="2024-04-11T14:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-11</time>
+        <a href="/post/5819399a.html" class="archive-article-date">
+  	<time datetime="2024-04-13T08:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="TCP的三次握手和四次挥手"><a href="#TCP的三次握手和四次挥手" class="headerlink" title="TCP的三次握手和四次挥手"></a>TCP的三次握手和四次挥手</h3><ul>
-<li><a href="#tcp%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B">TCP的三次握手和四次挥手</a><ul>
-<li><a href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">三次握手</a><ul>
-<li><a href="#%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B">具体过程</a></li>
-<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B">为什么不是两次握手</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B">四次挥手</a><ul>
-<li><a href="#%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B-1">具体过程</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%8E%9F%E5%9B%A0">四次挥手原因</a></li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p>三次握手（Three-way Handshake）其实就是指建立一个TCP连接时，需要客户端和服务器总共发送3个包<br><strong>主要作用</strong>：确认双方的接收能力和发送能力是否正常、指定自己的初始化序列号为后面的可靠性传送做准备</p>
-<h5 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h5><ul>
-<li><p><strong>第一次握手</strong>：客户端给服务端发一个 <code>SYN</code> 报文，并指明客户端的初始化序列号 <code>ISN(c)</code>，此时客户端处于 <code>SYN_SENT</code> 状态<br><strong>握手作用</strong>：客户端发送网络包，服务端收到了 这样服务端就能得出结论：客户端的发送能力、服务端的接收能力是正常的。</p>
-</li>
-<li><p><strong>第二次握手</strong>: 服务器收到客户端的 <code>SYN</code> 报文之后，会以自己的 <code>SYN</code> 报文作为应答，为了确认客户端的 <code>SYN</code>，将客户端的 <code>ISN+1</code> 作为 <code>ACK</code> 的值，此时服务器处于 <code>SYN_RCVD</code> 的状态<br><strong>握手作用</strong>：服务端发包，客户端收到了。客户端能得出结论：服务端的接收、发送能力，客户端的接收、发送能力是正常的。不过此时服务器并不能确认客户端的接收能力是否正常</p>
-</li>
-<li><p><strong>第三次握手</strong>：客户端收到 <code>SYN</code> 报文之后，会发送一个 <code>ACK</code> 报文，值为服务器的<code>ISN+1</code>。此时客户端处于 <code>ESTABLISHED</code> 状态。服务器收到 <code>ACK</code> 报文之后，也处于 <code>ESTABLISHED</code> 状态，此时，双方已建立起了连接<br><strong>握手作用</strong>：客户端发包，服务端收到了。 这样服务端就能得出结论：客户端的接收、发送能力正常，服务器自己的发送、接收能力也正常</p>
-<p><img src="/images/blog-2024-04-12-11-32-05.png" alt="三次握手图示"></p>
-</li>
-</ul>
-<h5 id="为什么不是两次握手"><a href="#为什么不是两次握手" class="headerlink" title="为什么不是两次握手"></a>为什么不是两次握手</h5><p>如果是两次握手，发送端可以确定自己发送的信息能对方能收到，也能确定对方发的包自己能收到，但接收端只能确定对方发的包自己能收到 无法确定自己发的包对方能收到</p>
-<p>并且两次握手的话, 客户端有可能因为网络阻塞等原因会发送多个请求报文，延时到达的请求又会与服务器建立连接，浪费掉许多服务器的资源</p>
-<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p><code>tcp</code>终止一个连接，需要经过四次挥手</p>
-<h5 id="具体过程-1"><a href="#具体过程-1" class="headerlink" title="具体过程"></a>具体过程</h5><ul>
-<li><p><strong>第一次挥手</strong>：客户端发送一个 <code>FIN</code> 报文，报文中会指定一个序列号。此时客户端处于 <code>FIN_WAIT1</code> 状态，停止发送数据，等待服务端的确认</p>
-</li>
-<li><p><strong>第二次挥手</strong>：服务端收到 <code>FIN</code> 之后，会发送 <code>ACK</code> 报文，且把客户端的序列号值 +1 作为 <code>ACK</code> 报文的序列号值，表明已经收到客户端的报文了，此时服务端处于<code>CLOSE_WAIT</code>状态</p>
-</li>
-<li><p><strong>第三次挥手</strong>：如果服务端也想断开连接了，和客户端的第一次挥手一样，发给 <code>FIN</code> 报文，且指定一个序列号。此时服务端处于<code>LAST_ACK</code> 的状态</p>
-</li>
-<li><p><strong>第四次挥手</strong>：客户端收到 <code>FIN</code> 之后，一样发送一个 <code>ACK</code> 报文作为应答，且把服务端的序列号值 +1 作为自己 <code>ACK</code> 报文的序列号值，此时客户端处于 <code>TIME_WAIT</code>态。需要过一阵子以确保服务端收到自己的 <code>ACK</code> 报文之后才会进入 <code>CLOSED</code> 状态，服务端收到 <code>ACK</code> 报文之后，就处于关闭连接了，处于 <code>CLOSED</code> 状态   </p>
-<p><img src="/images/blog-2024-04-12-11-43-59.png" alt="四次挥手图示"></p>
-</li>
-</ul>
-<h4 id="四次挥手原因"><a href="#四次挥手原因" class="headerlink" title="四次挥手原因"></a>四次挥手原因</h4><p>服务端在收到客户端断开连接<code>Fin</code>报文后，并不会立即关闭连接，而是先发送一个<code>ACK</code>包先告诉客户端收到关闭连接的请求，只有当服务器的所有报文发送完毕之后，才发送<code>FIN</code>报文断开连接，因此需要四次挥手</p>
-
+        
       
 
       
@@ -289,7 +240,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://zengjia121.github.io/post/c1106820.html" title="TCP的三次握手和四次挥手" target="_blank">http://zengjia121.github.io/post/c1106820.html</a>
+          <a href="http://zengjia121.github.io/post/5819399a.html" title="HTTP-6" target="_blank">http://zengjia121.github.io/post/5819399a.html</a>
         </li>
         
         <li>
@@ -305,37 +256,7 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
       
@@ -382,18 +303,9 @@
   
 <nav id="article-nav">
   
-    <a href="/post/95a0a801.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          leetcode-20240411
-        
-      </div>
-    </a>
   
-  
-    <a href="/post/5e956d24.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript原型与原型链</div>
+    <a href="/post/95a0a801.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode-20240411</div>
       <i class="icon-circle-right"></i>
     </a>
   
