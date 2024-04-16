@@ -6,26 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>2024.04.02 日常刷题 | 烧鸭工坊</title>
+  <title>2024.04.15 日常刷题 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="柱状图中最大的矩形 &amp;&amp; 最大矩形很相似的两道题  柱状图中最大的矩形 &amp;&amp; 最大矩形 柱状图中的最大矩形 题目详情 解题思路 代码实现   最大矩形 题目详情 解题思路 代码实现">
+  <meta name="description" content="环形链表 II &amp;&amp; LRU 缓存 环形链表 II &amp;&amp; LRU 缓存 环形链表 II 题目详情 解题思路 代码实现   LRU 缓存 题目详情 解题思路 代码实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2024.04.02 日常刷题">
-<meta property="og:url" content="http://zengjia121.github.io/post/457dce84.html">
+<meta property="og:title" content="2024.04.15 日常刷题">
+<meta property="og:url" content="http://zengjia121.github.io/post/994bbfac.html">
 <meta property="og:site_name" content="烧鸭工坊">
-<meta property="og:description" content="柱状图中最大的矩形 &amp;&amp; 最大矩形很相似的两道题  柱状图中最大的矩形 &amp;&amp; 最大矩形 柱状图中的最大矩形 题目详情 解题思路 代码实现   最大矩形 题目详情 解题思路 代码实现">
+<meta property="og:description" content="环形链表 II &amp;&amp; LRU 缓存 环形链表 II &amp;&amp; LRU 缓存 环形链表 II 题目详情 解题思路 代码实现   LRU 缓存 题目详情 解题思路 代码实现">
 <meta property="og:locale">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-02-16-11-39.png">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-02-16-16-28.png">
-<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-02-16-17-42.png">
-<meta property="article:published_time" content="2024-04-02T08:08:53.000Z">
-<meta property="article:modified_time" content="2024-04-11T14:11:32.140Z">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-04-15-19-29-24.png">
+<meta property="article:published_time" content="2024-04-15T11:20:27.000Z">
+<meta property="article:modified_time" content="2024-04-16T12:29:21.457Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="日常刷题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-04-02-16-11-39.png">
+<meta name="twitter:image" content="http://zengjia121.github.io/images/blog-2024-04-15-19-29-24.png">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
   
@@ -215,57 +213,57 @@
           <div id="js-content" class="content-ll">
             
 
-<article id="post-LeetcCode/leetcode-20240402" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-LeetcCode/leetcode020240415" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2024.04.02 日常刷题
+      2024.04.15 日常刷题
     </h1>
   
 
         
-        <a href="/post/457dce84.html" class="archive-article-date">
-  	<time datetime="2024-04-02T08:08:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
+        <a href="/post/994bbfac.html" class="archive-article-date">
+  	<time datetime="2024-04-15T11:20:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="柱状图中最大的矩形-最大矩形"><a href="#柱状图中最大的矩形-最大矩形" class="headerlink" title="柱状图中最大的矩形 &amp;&amp; 最大矩形"></a>柱状图中最大的矩形 &amp;&amp; 最大矩形</h3><p>很相似的两道题</p>
-<ul>
-<li><a href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2--%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2">柱状图中最大的矩形 &amp;&amp; 最大矩形</a></li>
-<li><a href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2">柱状图中的最大矩形</a><ul>
+        <h3 id="环形链表-II-LRU-缓存"><a href="#环形链表-II-LRU-缓存" class="headerlink" title="环形链表 II &amp;&amp; LRU 缓存"></a>环形链表 II &amp;&amp; LRU 缓存</h3><ul>
+<li><a href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii--lru-%E7%BC%93%E5%AD%98">环形链表 II &amp;&amp; LRU 缓存</a><ul>
+<li><a href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii">环形链表 II</a><ul>
 <li><a href="#%E9%A2%98%E7%9B%AE%E8%AF%A6%E6%83%85">题目详情</a></li>
 <li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF">解题思路</a></li>
 <li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a></li>
 </ul>
 </li>
-<li><a href="#%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2">最大矩形</a><ul>
+<li><a href="#lru-%E7%BC%93%E5%AD%98">LRU 缓存</a><ul>
 <li><a href="#%E9%A2%98%E7%9B%AE%E8%AF%A6%E6%83%85-1">题目详情</a></li>
 <li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1">解题思路</a></li>
 <li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1">代码实现</a></li>
 </ul>
 </li>
 </ul>
-<span id="more"></span>
-<h3 id="柱状图中的最大矩形"><a href="#柱状图中的最大矩形" class="headerlink" title="柱状图中的最大矩形"></a>柱状图中的最大矩形</h3><h4 id="题目详情"><a href="#题目详情" class="headerlink" title="题目详情"></a>题目详情</h4><p>给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。<br>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
-<p><img src="/images/blog-2024-04-02-16-11-39.png" alt="柱状图中最大的矩形"></p>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>感觉和求雨水的一样，矩形的大小取决于最短边的长度，使用单调栈：</p>
-<ol>
-<li><p>如果当前柱子的高度大于栈顶柱子的高度，或者栈为空，则将当前柱子的索引入栈</p>
 </li>
-<li><p>如果当前柱子的高度小于或等于栈顶柱子的高度，则说明找到了栈顶柱子右边第一个比它矮的柱子，此时可以计算以栈顶柱子为高的矩形的面积。重复此步骤，直到栈为空或者当前柱子的高度大于栈顶柱子的高度，然后将当前柱子的索引入栈。</p>
-</li>
-</ol>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> largestRectangleArea = <span class="keyword">function</span>(<span class="params">heights</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> stack = []</span><br><span class="line">  <span class="keyword">let</span> max = <span class="number">0</span></span><br><span class="line">  <span class="comment">//处理边界</span></span><br><span class="line">  heights = [<span class="number">0</span>, ...heights, <span class="number">0</span>]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; heights.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (stack.<span class="property">length</span> &amp;&amp; heights[i] &lt; heights[stack[stack.<span class="property">length</span> - <span class="number">1</span>]]) &#123;</span><br><span class="line">      <span class="keyword">let</span> height = heights[stack.<span class="title function_">pop</span>()]</span><br><span class="line">      <span class="comment">//矩形高度取决于最短的那个边</span></span><br><span class="line">      <span class="keyword">let</span> width = stack.<span class="property">length</span> ? i - stack[stack.<span class="property">length</span> - <span class="number">1</span>] - <span class="number">1</span> : i</span><br><span class="line">      max = <span class="title class_">Math</span>.<span class="title function_">max</span>(max, height * width)</span><br><span class="line">    &#125;</span><br><span class="line">    stack.<span class="title function_">push</span>(i)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> max</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</ul>
+<span id="more"></span> 
 
-<h3 id="最大矩形"><a href="#最大矩形" class="headerlink" title="最大矩形"></a>最大矩形</h3><h4 id="题目详情-1"><a href="#题目详情-1" class="headerlink" title="题目详情"></a>题目详情</h4><p>给定一个仅包含 0 和 1 、大小为 rows x cols 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。<br><img src="/images/blog-2024-04-02-16-16-28.png" alt="最大矩形"></p>
-<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p>遍历每一行，将其转化为柱状图中的最大矩形<br><img src="/images/blog-2024-04-02-16-17-42.png" alt="最大矩形具体思路"></p>
-<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">maximalRectangle</span>(<span class="params">matrix: <span class="built_in">string</span>[][]</span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (matrix.<span class="property">length</span> === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> m = matrix.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">const</span> n = matrix[<span class="number">0</span>].<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">const</span> heights = <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">let</span> maxArea = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    <span class="comment">//初始化一个空栈 stack，用于存储列的索引。</span></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">stack</span>: <span class="built_in">number</span>[] = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">      <span class="comment">//如果当前位置的值为 &quot;1&quot;，则将当前列的高度加 1；否则，将当前列的高度设置为 0。</span></span><br><span class="line">      heights[j] = j &lt; n &amp;&amp; matrix[i][j] === <span class="string">&quot;1&quot;</span> ? heights[j] + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (stack.<span class="property">length</span> &amp;&amp; heights[j] &lt; heights[stack[stack.<span class="property">length</span> - <span class="number">1</span>]]) &#123;</span><br><span class="line">        <span class="keyword">const</span> height = heights[stack.<span class="title function_">pop</span>() <span class="keyword">as</span> <span class="built_in">number</span>];</span><br><span class="line">        <span class="keyword">const</span> width = stack.<span class="property">length</span> ? j - stack[stack.<span class="property">length</span> - <span class="number">1</span>] - <span class="number">1</span> : j;</span><br><span class="line">        maxArea = <span class="title class_">Math</span>.<span class="title function_">max</span>(maxArea, height * width);</span><br><span class="line">      &#125;</span><br><span class="line">      stack.<span class="title function_">push</span>(j);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> maxArea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="环形链表-II"><a href="#环形链表-II" class="headerlink" title="环形链表 II"></a>环形链表 II</h4><h5 id="题目详情"><a href="#题目详情" class="headerlink" title="题目详情"></a>题目详情</h5><p>给定一个链表的头节点 <code>head</code> ，返回链表开始入环的第一个节点。 如果链表无环，则返回 <code>null</code>。<br>不允许修改链表。</p>
+<h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>感觉使用快慢指针找环还是比较容易的，但找到环的起点就有点困难了。<br>首先 慢指针的步数为 <code>n</code>，快指针的步数为 <code>2n</code>，根据下图，慢指针走过的步数为 <code>x + y</code> , 快指针走过的步数为<code>x + y + (y+z) * m</code>，其中<code>m</code>为走过的圈数。<br>这样 成立公式<code>2 * (x + y) = x + y + (y+z) * m</code>，化简后为<code>x = (n-1)(y+z) + z</code>，慢指针从相交点走z步就可以在环的起点遇上从链表头节点过来的pre<br><img src="/images/blog-2024-04-15-19-29-24.png" alt="环形链表解题思路"> </p>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">detectCycle</span>(<span class="params">head: ListNode | <span class="literal">null</span></span>): <span class="title class_">ListNode</span> | <span class="literal">null</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> slow = head;</span><br><span class="line">  <span class="keyword">let</span> fast = head;</span><br><span class="line">  <span class="keyword">while</span> (fast &amp;&amp; fast.<span class="property">next</span>) &#123;</span><br><span class="line">    slow = slow.<span class="property">next</span>;</span><br><span class="line">    fast = fast.<span class="property">next</span>.<span class="property">next</span>;</span><br><span class="line">    <span class="keyword">if</span> (slow === fast) &#123;</span><br><span class="line">      <span class="keyword">let</span> ptr = head;</span><br><span class="line">      <span class="keyword">while</span> (ptr !== slow) &#123;</span><br><span class="line">        ptr = ptr.<span class="property">next</span>;</span><br><span class="line">        slow = slow.<span class="property">next</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> ptr;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="LRU-缓存"><a href="#LRU-缓存" class="headerlink" title="LRU 缓存"></a>LRU 缓存</h4><h5 id="题目详情-1"><a href="#题目详情-1" class="headerlink" title="题目详情"></a>题目详情</h5><p>  请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构。<br>  实现 LRUCache 类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> 以 正整数 作为容量 <code>capacity</code> 初始化 <code>LRU</code> 缓存</li>
+<li><code>int get(int key)</code> 如果关键字 <code>key</code> 存在于缓存中，则返回关键字的值，否则返回 -1 。</li>
+<li><code>void put(int key, int value)</code> 如果关键字 <code>key</code> 已经存在，则变更其数据值 <code>value</code> ；如果不存在，则向缓存中插入该组 <code>key-value</code>。如果插入操作导致关键字数量超过 <code>capacity</code> ，则应该 逐出 最久未使用的关键字。<br>  函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。</li>
+</ul>
+<h5 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h5><p>淦，开始想用栈的，结果没想到普通的Map就可以了，不难，就是结构构造那边没写过有点陌生</p>
+<h5 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">cache</span>: <span class="title class_">Map</span>&lt;<span class="built_in">number</span>, <span class="built_in">number</span>&gt;;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">capacity</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">capacity: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">capacity</span> = capacity;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cache</span> = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">get</span>(<span class="attr">key</span>: <span class="built_in">number</span>): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">has</span>(key)) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">get</span>(key);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">delete</span>(key);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">set</span>(key, value);</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">put</span>(<span class="attr">key</span>: <span class="built_in">number</span>, <span class="attr">value</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">has</span>(key)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">delete</span>(key);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">cache</span>.<span class="property">size</span> &gt;= <span class="variable language_">this</span>.<span class="property">capacity</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">delete</span>(<span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">keys</span>().<span class="title function_">next</span>().<span class="property">value</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">set</span>(key, value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -278,7 +276,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://zengjia121.github.io/post/457dce84.html" title="2024.04.02 日常刷题" target="_blank">http://zengjia121.github.io/post/457dce84.html</a>
+          <a href="http://zengjia121.github.io/post/994bbfac.html" title="2024.04.15 日常刷题" target="_blank">http://zengjia121.github.io/post/994bbfac.html</a>
         </li>
         
         <li>
@@ -319,7 +317,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LeetCode/单调栈//" class="article-tag-list-link color4">单调栈</a>
+        			<a href="/categories/LeetCode/链表//" class="article-tag-list-link color3">链表</a>
         		</li>
       		
 		</ul>
@@ -371,18 +369,9 @@
   
 <nav id="article-nav">
   
-    <a href="/post/7591b14f.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          position 布局
-        
-      </div>
-    </a>
   
-  
-    <a href="/post/998dffd6.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">盒子模型</div>
+    <a href="/post/5819399a.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP 常见的请求头和响应头</div>
       <i class="icon-circle-right"></i>
     </a>
   
