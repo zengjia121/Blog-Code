@@ -18,7 +18,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-13-19-34-09.png">
 <meta property="article:published_time" content="2024-03-13T11:27:46.000Z">
-<meta property="article:modified_time" content="2024-03-15T14:33:28.450Z">
+<meta property="article:modified_time" content="2024-04-15T11:34:43.464Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="日常刷题">
@@ -237,7 +237,12 @@
 
 <p><img src="/images/blog-2024-03-13-19-34-09.png" alt="下一个排列题目"></p>
 <h3 id="题目理解"><a href="#题目理解" class="headerlink" title="题目理解"></a>题目理解</h3><p>读了三遍才读懂，很难蚌<br>最终把要求捋为下面几条：</p>
-<p><strong>1. 全数升序排列是最小的，全数逆序排列是最大的<br>2. 第一个数字越大其字典序越大<br>3. 后面的数字升序排列比逆序排列小<br>4. 保证其变大的幅度尽可能最小</strong></p>
+<ol>
+<li>全数升序排列是最小的，全数逆序排列是最大的  </li>
+<li>第一个数字越大其字典序越大  </li>
+<li>后面的数字升序排列比逆序排列小  </li>
+<li>保证其变大的幅度尽可能最小</li>
+</ol>
 <p>因此需要：</p>
 <p>1、从后往前找，找到第一个升序序列（i，j），此时（j,end）一定是降序的。<br>2、从（j,end）中从后往前走，找到第一个大于 nums[i]的数字 nums[k]<br>3、交换 nums[i]和 nums[k] 之间的值<br>4、将（j,end）升序排列</p>
 <p>JS 和 Python 的代码实现如下:</p>
@@ -485,15 +490,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">插件使用</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">amap</a>
+                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +506,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vscode</a>
+                <a href="javascript:void(0)" class="js-tag color5">插件使用</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bug</a>
+                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">amap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,15 +534,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,6 +547,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,11 +566,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">深度优先搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">广度优先搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,7 +578,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color2">深度优先搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">广度优先搜索</a>
               </li>
             
             <div class="clearfix"></div>
