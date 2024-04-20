@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zengjia121.github.io">
-  <title>Category: 面试 | 烧鸭工坊</title>
+  <title>知识图谱平台搭建:防抖和节流 | 烧鸭工坊</title>
   <meta name="generator" content="yilia">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="烧鸭工坊">
-<meta property="og:url" content="http://zengjia121.github.io/categories/%E9%9D%A2%E8%AF%95/index.html">
+  <meta name="description" content="元素尺寸变化防抖实现 元素尺寸变化防抖实现 el-table 报错调整 报错内容分析 解决方法：防抖 失败的解决方法：节流     防抖和节流 防抖 节流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱平台搭建:防抖和节流">
+<meta property="og:url" content="http://zengjia121.github.io/post/3010e7ca.html">
 <meta property="og:site_name" content="烧鸭工坊">
+<meta property="og:description" content="元素尺寸变化防抖实现 元素尺寸变化防抖实现 el-table 报错调整 报错内容分析 解决方法：防抖 失败的解决方法：节流     防抖和节流 防抖 节流">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-04-19T02:16:27.000Z">
+<meta property="article:modified_time" content="2024-04-19T14:23:22.282Z">
 <meta property="article:author" content="RoastDuck">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="知识图谱">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="烧鸭工坊" type="application/atom+xml">
@@ -204,594 +210,215 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+
+<article id="post-KG/KG-4" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      知识图谱平台搭建:防抖和节流
+    </h1>
+  
+
+        
+        <a href="/post/3010e7ca.html" class="archive-article-date">
+  	<time datetime="2024-04-19T02:16:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-19</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="元素尺寸变化防抖实现"><a href="#元素尺寸变化防抖实现" class="headerlink" title="元素尺寸变化防抖实现"></a>元素尺寸变化防抖实现</h3><ul>
+<li><a href="#%E5%85%83%E7%B4%A0%E5%B0%BA%E5%AF%B8%E5%8F%98%E5%8C%96%E9%98%B2%E6%8A%96%E5%AE%9E%E7%8E%B0">元素尺寸变化防抖实现</a><ul>
+<li><a href="#el-table-%E6%8A%A5%E9%94%99%E8%B0%83%E6%95%B4">el-table 报错调整</a><ul>
+<li><a href="#%E6%8A%A5%E9%94%99%E5%86%85%E5%AE%B9%E5%88%86%E6%9E%90">报错内容分析</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E9%98%B2%E6%8A%96">解决方法：防抖</a></li>
+<li><a href="#%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%8A%82%E6%B5%81">失败的解决方法：节流</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81">防抖和节流</a><ul>
+<li><a href="#%E9%98%B2%E6%8A%96">防抖</a></li>
+<li><a href="#%E8%8A%82%E6%B5%81">节流</a></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h4 id="el-table-报错调整"><a href="#el-table-报错调整" class="headerlink" title="el-table 报错调整"></a>el-table 报错调整</h4><p>具体报错内容：<code>ResizeObserver loop completed with undelivered notifications.</code></p>
+<h5 id="报错内容分析"><a href="#报错内容分析" class="headerlink" title="报错内容分析"></a>报错内容分析</h5><p>百度了一下：<br>  这个错误通常表示ResizeObserver无法在一个浏览器帧中传递所有的通知，因为它们需要的处理时间比帧的剩余时间更长。这通常发生在被观察元素的尺寸变化导致了一连串的回调函数被调用时。<br>结合错误内容是在el-table窗口放大缩小时报的错误，所以初步断定为是由于放大缩小时窗口变化过快，导致一连串回调函数被调用</p>
+<h5 id="解决方法：防抖"><a href="#解决方法：防抖" class="headerlink" title="解决方法：防抖"></a>解决方法：防抖</h5><p>在<code>main.ts</code>中对<code>window.ResizeObserver </code>类重写，在其回调函数中使用防抖（debounce）功能，也可以加载<code>App.vue</code>里面，但加那老是报错…     </p>
+<ul>
+<li>代码如下：<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//防抖代码实现</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">debounce</span> = (<span class="params">fn: <span class="built_in">any</span>, delay: <span class="built_in">any</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">timer</span>: <span class="built_in">any</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">    &#125;</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">fn</span>(...args)</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> resizeObserver = <span class="variable language_">window</span>.<span class="property">ResizeObserver</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">ResizeObserver</span> = <span class="keyword">class</span> <span class="title class_">ResizeObserver</span> <span class="keyword">extends</span> <span class="title class_ inherited__">resizeObserver</span> &#123;</span><br><span class="line">  <span class="comment">//创建了一个新的 ResizeObserver 类，该类继承自原始的 ResizeObserver 类</span></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">callback: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">    <span class="comment">//接收一个回调函数 callback 作为参数。</span></span><br><span class="line">    <span class="comment">//这个回调函数是在元素的尺寸发生变化时需要执行的函数。</span></span><br><span class="line">    callback = <span class="title function_">debounce</span>(callback, <span class="number">200</span>)</span><br><span class="line">    <span class="comment">//super 关键字来调用父类的构造函数，将新的回调函数传递给它。</span></span><br><span class="line">    <span class="variable language_">super</span>(callback)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="失败的解决方法：节流"><a href="#失败的解决方法：节流" class="headerlink" title="失败的解决方法：节流"></a>失败的解决方法：节流</h5><p>想着是虽然用防抖解决了这个问题，但是假如窗口持续变化的话，要等窗口停止变化才能进行尺寸更改，所以想使用节流试试，设置一段时间刷新一次。<br>然而会报错：    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ResizeObserver loop completed with undelivered notifications.</span><br></pre></td></tr></table></figure>
+<p>这个错误原因是， ResizeObserver 的回调函数执行时间过长，导致新的观察任务在旧的观察任务完成之前就已经添加到队列中，从而形成了一个无法完成的循环。<br>所以还是用防抖会更好一点</p>
+<ul>
+<li>代码如下：<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">throttle</span> = (<span class="params">fn: <span class="built_in">any</span>, delay: <span class="built_in">any</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> last = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="keyword">if</span> (now - last &gt; delay) &#123;</span><br><span class="line">      last = now</span><br><span class="line">      <span class="title function_">fn</span>(...args)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resizeObserver = <span class="variable language_">window</span>.<span class="property">ResizeObserver</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">ResizeObserver</span> = <span class="keyword">class</span> <span class="title class_">ResizeObserver</span> <span class="keyword">extends</span> <span class="title class_ inherited__">resizeObserver</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">callback: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">    callback = <span class="title function_">throttle</span>(callback, <span class="number">200</span>)</span><br><span class="line">    <span class="variable language_">super</span>(callback)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p>题外话，梳理一下防抖和节流</p>
+<h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h4><p>  防抖的原理是，如果在一段时间内连续触发了同一个事件，那么只有在最后一次事件触发后的一段时间（例如200ms）才执行一次事件处理函数。<br>  如果在这段时间内再次触发了事件，那么之前的计时会被取消，重新开始计时。这样可以确保事件处理函数只在一连串的事件触发完毕后才执行一次。    </p>
+<ul>
+<li>代码实现：  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">debounce</span> = (<span class="params">fn: <span class="built_in">any</span>, delay: <span class="built_in">any</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">timer</span>: <span class="built_in">any</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">    &#125;</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">fn</span>(...args)</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><p>  节流的原理是，如果在一段时间内连续触发了同一个事件，那么每隔一段时间（例如200ms）就执行一次事件处理函数。<br>  无论在这段时间内事件触发了多少次，事件处理函数都只会执行一次。这样可以确保事件处理函数在一连串的事件触发过程中，每隔一段时间就执行一次，而不是等到事件触发完毕后才执行。  </p>
+<ul>
+<li>代码实现：  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">throttle</span> = (<span class="params">fn: <span class="built_in">any</span>, delay: <span class="built_in">any</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> last = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="keyword">if</span> (now - last &gt; delay) &#123;</span><br><span class="line">      last = now</span><br><span class="line">      <span class="title function_">fn</span>(...args)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resizeObserver = <span class="variable language_">window</span>.<span class="property">ResizeObserver</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">ResizeObserver</span> = <span class="keyword">class</span> <span class="title class_">ResizeObserver</span> <span class="keyword">extends</span> <span class="title class_ inherited__">resizeObserver</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">callback: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">    callback = <span class="title function_">throttle</span>(callback, <span class="number">200</span>)</span><br><span class="line">    <span class="variable language_">super</span>(callback)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+        
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          RoastDuck
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://zengjia121.github.io/post/3010e7ca.html" title="知识图谱平台搭建:防抖和节流" target="_blank">http://zengjia121.github.io/post/3010e7ca.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/44622a2e.html" class="archive-article-date">
-  	<time datetime="2024-04-19T14:17:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/44622a2e.html">Cookie、Token、Session</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">知识图谱</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
+        			<a href="/categories/前端开发//" class="article-tag-list-link color5">前端开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
+        			<a href="/categories/前端开发/平台搭建//" class="article-tag-list-link color5">平台搭建</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      
+
+        <!-- <button>111</button> -->
+        
+<div class="share-btn share-icons tooltip-left">
+  <span class="tooltip-item">
+    <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+      <i class="icon icon-weixin"></i>
+    </a> -->
+    <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+      <i class="icon icon-weibo"></i>
+    </a>
+    <a class="qq share-sns" href="javascript:;" data-type="qq">
+      <i class="icon icon-qq"></i>
+    </a>
+    <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+      <i class="icon icon-qzone"></i>
+    </a>
+    <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+      <i class="icon icon-facebook"></i>
+    </a>
+    <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+      <i class="icon icon-twitter"></i>
+    </a>
+  </span>
+</div>
+
+<div class="mask js-mask"></div>
+<style>
+  .share_p, .tooltip-item {
+    display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+</style>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/5819399a.html" class="archive-article-date">
-  	<time datetime="2024-04-13T08:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-13</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/post/44622a2e.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Cookie、Token、Session
+        
+      </div>
+    </a>
+  
+  
+    <a href="/post/994bbfac.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2024.04.15 日常刷题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/5819399a.html">HTTP 常见的请求头和响应头</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/c1106820.html" class="archive-article-date">
-  	<time datetime="2024-04-11T14:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/c1106820.html">TCP的三次握手和四次挥手</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/5e956d24.html" class="archive-article-date">
-  	<time datetime="2024-04-10T13:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/5e956d24.html">JavaScript原型与原型链</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/c5f6125a.html" class="archive-article-date">
-  	<time datetime="2024-04-08T13:54:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/c5f6125a.html">HTTP状态码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/7591b14f.html" class="archive-article-date">
-  	<time datetime="2024-04-08T13:38:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/7591b14f.html">position 布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/CSS//" class="article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/998dffd6.html" class="archive-article-date">
-  	<time datetime="2024-04-01T13:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/998dffd6.html">盒子模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/CSS//" class="article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/2873cd15.html" class="archive-article-date">
-  	<time datetime="2024-03-30T14:21:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/2873cd15.html">UDP 和 TCP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/HTTP//" class="article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/3955bc30.html" class="archive-article-date">
-  	<time datetime="2024-03-29T14:26:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/3955bc30.html">Javascript本地存储的方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/post/2a4ca21a.html" class="archive-article-date">
-  	<time datetime="2024-03-29T09:20:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/post/2a4ca21a.html">元素水平垂直居中的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/CSS//" class="article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/categories/%E9%9D%A2%E8%AF%95/page/2/">2</a><a class="extend next" rel="next" href="/categories/%E9%9D%A2%E8%AF%95/page/2/">Next →</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -815,10 +442,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

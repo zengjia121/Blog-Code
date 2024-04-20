@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-19-39.png">
 <meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-28-21-18-30.png">
 <meta property="article:published_time" content="2024-03-28T11:51:21.000Z">
-<meta property="article:modified_time" content="2024-03-28T13:25:09.134Z">
+<meta property="article:modified_time" content="2024-04-19T09:00:02.342Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="知识图谱">
@@ -261,7 +261,7 @@
 <li>将其他请求与map对象中的请求进行比对，要是相同请求，则返回空对象</li>
 </ol>
 <ul>
-<li>代码实现如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 Map 来保存请求和取消令牌</span></span><br><span class="line"><span class="keyword">const</span> pendingRequests = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个请求和取消令牌的key</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">generateReqKey</span>(<span class="params">config: AxiosRequestConfig</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; method, url, params &#125; = config</span><br><span class="line">  <span class="keyword">return</span> [method, url, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(params)].<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (pendingRequests.<span class="title function_">has</span>(requestKey)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Request canceled 1&quot;</span>, requestKey)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>代码实现如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个 Map 来保存请求和取消令牌</span></span><br><span class="line"><span class="keyword">const</span> pendingRequests = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个请求和取消令牌的key</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">generateReqKey</span>(<span class="params">config: AxiosRequestConfig</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; method, url, params,data &#125; = config</span><br><span class="line">  <span class="keyword">return</span> [method, url, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(params),<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data)].<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (pendingRequests.<span class="title function_">has</span>(requestKey)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Request canceled 1&quot;</span>, requestKey)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 这样看起来是解决了多个相同请求连续重复的问题，但其实这样并没有拦截请求，后端接收到的请求仍然是一样多的，而且这样无法区别是否请求为不同图谱，遂放弃<br><img src="/images/blog-2024-03-28-21-23-56.png" alt="后端响应界面"></li>
 </ul>
 <h3 id="尝试二：使用axios-CancelToken-阻止相同请求"><a href="#尝试二：使用axios-CancelToken-阻止相同请求" class="headerlink" title="尝试二：使用axios CancelToken 阻止相同请求"></a>尝试二：使用axios CancelToken 阻止相同请求</h3><p>Axios具有一个取消令牌（CancelToken）机制，用于取消正在进行的 HTTP 请求。<br>一个取消令牌源，包含 token 和 cancel 方法的对象。可以将 token 赋值给请求配置对象的 cancelToken 属性，然后在需要取消请求时，调用 cancel 方法，最后再返回一个空对象回去。<br>这样就可以实现需求一<code>取消新的请求，只发送旧的请求</code>。</p>
@@ -275,9 +275,9 @@
 <li>代码实现如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-----响应拦截器代码-----//</span></span><br><span class="line">  <span class="comment">// 如果这个请求不存在，那么取消之前不同id的旧请求</span></span><br><span class="line">    pendingRequests.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (key.<span class="title function_">startsWith</span>(config.<span class="property">method</span> + (config?.<span class="property">url</span> ?? <span class="string">&quot;&quot;</span>).<span class="title function_">split</span>(<span class="string">&quot;?&quot;</span>)[<span class="number">0</span>])) &#123;</span><br><span class="line">        <span class="comment">// console.log(&quot;Request canceled 2&quot;, key)</span></span><br><span class="line">        value.<span class="title function_">cancel</span>(<span class="string">&quot;Cancel old request with different id&quot;</span>)</span><br><span class="line">        pendingRequests.<span class="title function_">delete</span>(key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加这个请求到 map 中</span></span><br><span class="line">  <span class="keyword">const</span> source = axios.<span class="property">CancelToken</span>.<span class="title function_">source</span>()</span><br><span class="line">  config.<span class="property">cancelToken</span> = source.<span class="property">token</span></span><br><span class="line">  pendingRequests.<span class="title function_">set</span>(requestKey, source)</span><br></pre></td></tr></table></figure>
 <img src="/images/blog-2024-03-28-21-18-30.png" alt="实现截图2"></li>
 </ul>
-<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p>使用axios取消的时候，会在响应拦截器中抛出一个错误，所以要在响应拦截器中添加检查，如果由于请求被取消引起，则返回一个默认的响应</p>
+<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p>使用axios取消的时候，会在响应拦截器中抛出一个错误，所以要在响应拦截器中添加检查，如果由于请求被取消引起，则返回一个默认的响应，此外，如果出现其他情况导致的请求失败，移除一下这个请求</p>
 <ul>
-<li>代码如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">instance</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="variable language_">this</span>.<span class="property">handleResponse</span>, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (axios.<span class="title function_">isCancel</span>(error)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Request was canceled&#x27;</span>, error.<span class="property">message</span>);</span><br><span class="line">    <span class="comment">// 返回一个默认的响应</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123; <span class="attr">data</span>: &#123;&#125; &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 处理其他错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>代码如下：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">instance</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="variable language_">this</span>.<span class="property">handleResponse</span>, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (axios.<span class="title function_">isCancel</span>(error)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Request was canceled&#x27;</span>, error.<span class="property">message</span>);</span><br><span class="line">    <span class="comment">// 返回一个默认的响应</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123; <span class="attr">data</span>: &#123;&#125; &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 请求完成后，从 map 中移除这个请求</span></span><br><span class="line">    <span class="keyword">const</span> requestKey = <span class="title function_">generateReqKey</span>(error.<span class="property">config</span>)</span><br><span class="line">    pendingRequests.<span class="title function_">delete</span>(requestKey)</span><br><span class="line">    <span class="comment">// 处理其他错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -558,10 +558,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -570,7 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,10 +583,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,7 +606,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
