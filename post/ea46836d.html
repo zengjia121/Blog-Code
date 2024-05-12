@@ -17,8 +17,9 @@
 <meta property="og:description" content="Vue3 与 Vue2 区别 Vue3 与 Vue2 区别 一、双向数据绑定原理发生了改变 Vue2 数据绑定原理实现 Vue3 数据绑定原理实现 相比于 vue2.x，Vue3 使用 proxy 的优势如下 Object.defineProperty与 Proxy Object.defineProperty Proxy     二、Vue3 支持碎片(Fragments) Vue3 版本 V">
 <meta property="og:locale">
 <meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-03-20-11-24-14.png">
+<meta property="og:image" content="http://zengjia121.github.io/images/blog-2024-05-09-22-26-08.png">
 <meta property="article:published_time" content="2024-03-17T03:08:52.000Z">
-<meta property="article:modified_time" content="2024-04-01T12:58:45.462Z">
+<meta property="article:modified_time" content="2024-05-09T14:26:15.730Z">
 <meta property="article:author" content="RoastDuck">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="Vue">
@@ -360,7 +361,8 @@
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> &#123; count &#125; = state;  <span class="comment">// count 将失去响应性</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; value &#125; = count;  <span class="comment">// value 仍然保持响应性</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="五、生命周期钩子不同"><a href="#五、生命周期钩子不同" class="headerlink" title="五、生命周期钩子不同"></a>五、生命周期钩子不同</h3><table>
+<h3 id="五、生命周期钩子不同"><a href="#五、生命周期钩子不同" class="headerlink" title="五、生命周期钩子不同"></a>五、生命周期钩子不同</h3><p><img src="/images/blog-2024-05-09-22-26-08.png" alt="生命周期钩子"></p>
+<table>
 <thead>
 <tr>
 <th>Vue2</th>
@@ -568,11 +570,11 @@
   
 <nav id="article-nav">
   
-    <a href="/post/3d0f8f1d.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/1622dcde.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2024.3.17 日常刷题 (1)
+          2024.3.17 日常刷题 (2)
         
       </div>
     </a>
@@ -745,7 +747,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,11 +759,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">知识图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常刷题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -773,19 +783,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,7 +795,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
