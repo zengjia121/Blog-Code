@@ -23,7 +23,7 @@ export default defineConfig({
       label: "目录",
     },
 
-    socialLinks: [{ icon: "github", link: "https://github.com/maomao1996/vitepress-nav-template" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/zengjia121" }],
 
     footer: {
       message: "如有转载或 CV 的请标注本站原文地址",
@@ -61,24 +61,4 @@ export default defineConfig({
     //   categoryId: "DIC_kwDOJC09Js4Cekn0",
     // },
   },
-
-  // themeConfig: {
-  //   // https://vitepress.dev/reference/default-theme-config
-  //   // nav: [
-  //   //   { text: "Home", link: "/" },
-  //   //   { text: "Examples", link: "/markdown-examples" },
-  //   // ],
-  //   nav: topNav,
-  //   sidebar: [
-  //     {
-  //       text: "Examples",
-  //       items: [
-  //         { text: "Markdown Examples", link: "/markdown-examples" },
-  //         { text: "Runtime API Examples", link: "/api-examples" },
-  //       ],
-  //     },
-  //   ],
-
-  //   socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
-  // },
 });
