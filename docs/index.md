@@ -1,11 +1,15 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+layoutClass: "m-home-layout"
 
 hero:
-  name: "My Blog"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "烧卤农场"
+  text: ""
+  tagline: 烧鸭养殖分部
+  image:
+    src: /miku1.jpg
+    alt: 鸭鸭农场
   actions:
     - theme: brand
       text: Markdown Examples
@@ -23,3 +27,4 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
+<!-- @format -->
