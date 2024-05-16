@@ -50,15 +50,18 @@ export default defineConfig({
     darkModeSwitchTitle: "切换到深色模式",
 
     // /*** 自定义配置 ***/
-    // visitor: {
-    //   badgeId: "maomao1996.vitepress-nav-template",
-    // },
-
-    // comment: {
-    //   repo: "maomao1996/vitepress-nav-template",
-    //   repoId: "R_kgDOJC09Jg",
-    //   category: "Announcements",
-    //   categoryId: "DIC_kwDOJC09Js4Cekn0",
+    search: {
+      provider: "algolia",
+      options: {
+        appId: "27XTJSINHO",
+        apiKey: "3a0677c4909fe44f1843f338aabddac7",
+        indexName: "ZJBlog",
+      },
+    },
+    // algolia: {
+    //   apiKey: "3a0677c4909fe44f1843f338aabddac7",
+    //   indexName: "ZJBlog",
+    //   appId: "27XTJSINHO",
     // },
   },
 });

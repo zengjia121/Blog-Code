@@ -14,35 +14,6 @@ date: 2024-03-17 11:08:52
 
 ### Vue3 与 Vue2 区别
 
-- [Vue3 与 Vue2 区别](#vue3-与-vue2-区别)
-- [一、双向数据绑定原理发生了改变](#一双向数据绑定原理发生了改变)
-  - [Vue2 数据绑定原理实现](#vue2-数据绑定原理实现)
-  - [Vue3 数据绑定原理实现](#vue3-数据绑定原理实现)
-  - [相比于 vue2.x，Vue3 使用 proxy 的优势如下](#相比于-vue2xvue3-使用-proxy-的优势如下)
-  - [Object.defineProperty 与 Proxy](#objectdefineproperty与-proxy)
-    - [Object.defineProperty](#objectdefineproperty)
-    - [Proxy](#proxy)
-- [二、Vue3 支持碎片(Fragments)](#二vue3-支持碎片fragments)
-  - [Vue3 版本](#vue3-版本)
-  - [Vue2 版本](#vue2-版本)
-- [三. Composition API](#三-composition-api)
-  - [选项 API（Vue2）](#选项-apivue2)
-  - [合成 API（Vue3）](#合成-apivue3)
-- [四、建立响应式数据的方式不同](#四建立响应式数据的方式不同)
-  - [Vue2](#vue2)
-  - [Vue3](#vue3)
-  - [reactive() 函数和 ref() 函数](#reactive-函数和-ref-函数)
-- [五、生命周期钩子不同](#五生命周期钩子不同)
-- [六、父子传参不同](#六父子传参不同)
-  - [Vue2 传参](#vue2-传参)
-  - [Vue3 传参](#vue3-传参)
-- [七、Setup()函数特性](#七setup函数特性)
-  - [接收参数](#接收参数)
-- [八、Vue 3 中的 Teleport](#八vue-3-中的-teleport)
-- [总结](#总结)
-
-<!--more-->
-
 ### 一、双向数据绑定原理发生了改变
 
 #### Vue2 数据绑定原理实现
@@ -114,7 +85,7 @@ vue3 中使用了 es6 的 ProxyAPI 对数据代理。Proxy 是 ES6 中新增的�
          }
      })
      return observed
- }
+  }
 
 ```
 
@@ -148,7 +119,6 @@ export default {
     <div>元素 2</div>
   </div>
 </template>
-
 <script>
 export default {
   // ...
@@ -321,27 +291,26 @@ export default {
    }
    };
     return new Proxy(target, handler);
-    }
-
+   }
    ```
 
 3. toRefs()
 
-   toRefs() 函数用于将 reactive() 创建的响应式对象转换为一组 ref 对象。
+toRefs() 函数用于将 reactive() 创建的响应式对象转换为一组 ref 对象。
 
 4. ref()与 reactive() 区别
 
-   1. 使用方式：reactive() 接受一个对象并返回这个对象的响应式代理，我们可以直接访问和修改这个代理对象的属性。ref() 接受一个值并返回一个对象，这个对象有一个 value 属性，我们可以通过这个属性来获取或设置值。
-   2. 适用场景：reactive() 更适合用于管理一个有多个属性的复杂状态，ref() 更适合用于管理一个单一的值。如果你需要在模板中直接使用一个响应式对象的属性，你可能需要使用 ref()，因为在模板中不能直接访问响应式对象的属性。
-   3. 解构：如果你解构一个由 reactive() 创建的响应式对象，解构出来的属性将会失去响应性。如果你解构一个由 ref() 创建的响应式引用，解构出来的值仍然保持响应性。这是因为 ref() 实际上返回的是一个包含 value 属性的对象，而不是直接返回值。
+- 使用方式：reactive() 接受一个对象并返回这个对象的响应式代理，我们可以直接访问和修改这个代理对象的属性。ref() 接受一个值并返回一个对象，这个对象有一个 value 属性，我们可以通过这个属性来获取或设置值。
+- 适用场景：reactive() 更适合用于管理一个有多个属性的复杂状态，ref() 更适合用于管理一个单一的值。如果你需要在模板中直接使用一个响应式对象的属性，你可能需要使用 ref()，因为在模板中不能直接访问响应式对象的属性。
+- 解构：如果你解构一个由 reactive() 创建的响应式对象，解构出来的属性将会失去响应性。如果你解构一个由 ref() 创建的响应式引用，解构出来的值仍然保持响应性。这是因为 ref() 实际上返回的是一个包含 value 属性的对象，而不是直接返回值。
 
-   ```JavaScript
-   const state = reactive({ count: 0 });
-   const { count } = state;  // count 将失去响应性
+```JavaScript
+const state = reactive({ count: 0 });
+const { count } = state;  // count 将失去响应性
 
-   const count = ref(0);
-   const { value } = count;  // value 仍然保持响应性
-   ```
+const count = ref(0);
+const { value } = count;  // value 仍然保持响应性
+```
 
 ### 五、生命周期钩子不同
 
@@ -357,7 +326,7 @@ export default {
 | updated         | onUpdated       | 组件更新完成之后执行的函数                                 |
 | beforeDestroy   | onBeforeUnmount | 组件卸载之前执行的函数。                                   |
 | destroyed       | onUnmounted     | 组件卸载完成后执行的函数                                   |
-| --------------- | --------------- | 若组件被<keep-alive>包含，则多出下面两个钩子函数。         |
+| --------------- | --------------- | 若组件被`<keep-alive>`包含，则多出下面两个钩子函数。       |
 | activated       | onActivated     | 被包含在中的组件，会多出两个生命周期钩子函数。被激活时执行 |
 | deactivated     | onDeactivated   | 比如从 A 组件，切换到 B 组件，A 组件消失时执行。           |
 | errorCaptured   | onErrorCaptured | 当捕获一个来自子孙组件的异常时激活钩子函数。               |

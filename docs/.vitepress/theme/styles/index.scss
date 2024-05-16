@@ -18,7 +18,8 @@
   overflow: hidden; // 隐藏超出元素的部分
 }
 .m-home-layout {
-  background-color: #e8f8fa;
+  // background-color: #e8f8fa;
+  background: linear-gradient(to bottom, #e8f8fa, #ffffff);
 }
 .m-home-layout .details small {
   opacity: 0.8;

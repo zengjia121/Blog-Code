@@ -1,4 +1,8 @@
-/***** vitepress 样式优化 ******/
+/**
+ * ** vitepress 样式优化 *****
+ *
+ * @format
+ */
 
 /* 大屏大一点 */
 @media (min-width: 1440px) {
@@ -27,6 +31,11 @@
   .image-container:hover .image-bg {
     opacity: 0.4;
   }
+}
+
+.VPFooter[data-v-80147a0d] {
+  border-top: none;
+  background: none;
 }
 
 /* 自定义块样式 */

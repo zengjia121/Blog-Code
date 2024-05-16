@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-import { nextTick, provide } from 'vue'
-import Giscus from '@giscus/vue'
+import { useData } from "vitepress"
+import DefaultTheme from "vitepress/theme"
+import { nextTick, provide } from "vue"
+import Giscus from "@giscus/vue"
 
-import { usePageId } from '../composables'
+import { usePageId } from "../composables"
 
-import MNavVisitor from './MNavVisitor.vue'
-import MDocFooter from './MDocFooter.vue'
+import MNavVisitor from "./MNavVisitor.vue"
+import MDocFooter from "./MDocFooter.vue"
 
 const { Layout } = DefaultTheme
 const { isDark, theme, frontmatter } = useData()
@@ -16,10 +16,10 @@ const pageId = usePageId()
 const { comment } = theme.value
 
 const enableTransitions = () =>
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+  "startViewTransition" in document &&
+  window.matchMedia("(prefers-reduced-motion: no-preference)").matches
 
-provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
   if (!enableTransitions()) {
     isDark.value = !isDark.value
     return
@@ -43,8 +43,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
     {
       duration: 300,
-      easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+      easing: "ease-in",
+      pseudoElement: `::view-transition-${isDark.value ? "old" : "new"}(root)`,
     },
   )
 })
@@ -61,7 +61,10 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       <MNavVisitor />
     </template>
 
-    <template v-if="comment && frontmatter.comment !== false" #doc-footer-before>
+    <template
+      v-if="comment && frontmatter.comment !== false"
+      #doc-footer-before
+    >
       <div class="doc-comments">
         <Giscus
           id="comments"
