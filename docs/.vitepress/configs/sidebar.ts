@@ -8,7 +8,7 @@ const postDir = path.resolve(__dirname, "../../post");
 
 function getMarkdownTitle(filePath: string): string {
   const content = fs.readFileSync(filePath, "utf-8");
-  const match = content.match(/^---\s*\ntitle:\s*(.*)\n/m);
+  const match = content.match(/^---[\s\S]*?\ntitle:\s*(.*)\n/m);
   return match ? match[1] : path.basename(filePath, ".md");
 }
 
@@ -28,6 +28,7 @@ function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
     "TypeScript",
     "Vue",
     "KG",
+    "Blog",
     "算法",
     "设计模式",
     "Leetcode",
