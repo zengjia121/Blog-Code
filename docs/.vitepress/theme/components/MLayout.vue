@@ -81,7 +81,6 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
         />
       </div>
     </template>
-
     <template #doc-after>
       <MDocFooter />
     </template>

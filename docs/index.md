@@ -11,20 +11,36 @@ hero:
     src: /miku1.jpg
     alt: 鸭鸭农场
   actions:
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
+    - text: 前端知识
+      link: /posts/ES6/ES6-1.html
+    - text: 项目总结
+      link: /project/KG/KG-1.html
+      theme: alt
+    - text: 鸭鸭农场
       link: /api-examples
+    - text: 未知地带
+      link: /api-examples
+      theme: alt
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 📖
+    title: 前端知识
+    details: 前端常用知识点<small>（面试八股文）</small><br />
+    link: /posts/ES6/ES6-1.html
+    linkText: 前端知识
+  - icon: 💻
+    title: 算法基础
+    details: 刷题，刷题，刷题，刷题
+    link: /algorithm/算法/动态规划
+    linkText: 算法理论和题目
+  - icon: 💡
+    title: 项目总结
+    details: 前端开发踩坑指南（从入门到入土）
+    link: /project/KG/KG-1.html
+    linkText: 这坑你也踩？
+  - icon: 🦆
+    title: 鸭鸭工具箱
+    details: 没有一只鸭子可以成功地走出南京
 ---
 
 <!-- @format -->
