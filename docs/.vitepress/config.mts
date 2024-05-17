@@ -8,7 +8,6 @@ export default defineConfig({
   title: "RoastDuck",
   description: "A VitePress Site",
   head,
-  base: "/dist/",
   /* 主题配置 */
   themeConfig: {
     i18nRouting: false,
